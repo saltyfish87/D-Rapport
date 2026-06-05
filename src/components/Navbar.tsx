@@ -10,7 +10,7 @@ import { useAdmin } from '../context/AdminContext';
 import drapportLogo from '../assets/images/drapport_logo_1780681993105.png';
 
 export default function Navbar() {
-  const { settings, setIsAdminOpen } = useAdmin();
+  const { settings, setIsAdminOpen, isAdminSession } = useAdmin();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -82,13 +82,15 @@ export default function Navbar() {
 
           {/* Desktop Contact Actions */}
           <div className="hidden md:flex items-center gap-5">
-            <button
-              onClick={() => setIsAdminOpen(true)}
-              className="p-1.5 hover:bg-neutral-100 text-[#82827E] hover:text-[#B2946E] transition-all rounded-xs cursor-pointer flex items-center justify-center border border-transparent hover:border-[#EBEBE6] mr-1"
-              title="Open Concierge Customizer"
-            >
-              <Settings className="w-4 h-4 animate-spin-slow" />
-            </button>
+            {isAdminSession && (
+              <button
+                onClick={() => setIsAdminOpen(true)}
+                className="p-1.5 hover:bg-neutral-100 text-[#82827E] hover:text-[#B2946E] transition-all rounded-xs cursor-pointer flex items-center justify-center border border-transparent hover:border-[#EBEBE6] mr-1"
+                title="Open Concierge Customizer"
+              >
+                <Settings className="w-4 h-4 animate-spin-slow" />
+              </button>
+            )}
             <a
               href={`mailto:${settings.contact.email === 'inquiry@drapportresidences.com' ? 'shyanyeews@gmail.com' : settings.contact.email}`}
               className="text-xs font-mono text-[#575754] hover:text-[#1C1C1B] flex items-center gap-1.5 transition-colors"

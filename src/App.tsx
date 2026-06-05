@@ -18,7 +18,7 @@ import { useAdmin } from './context/AdminContext';
 import { Settings } from 'lucide-react';
 
 export default function App() {
-  const { settings, setIsAdminOpen } = useAdmin();
+  const { settings, setIsAdminOpen, isAdminSession } = useAdmin();
 
   // Dynamic SEO Synchronization
   useEffect(() => {
@@ -96,15 +96,17 @@ export default function App() {
       <AdminPanel />
 
       {/* Floating Concierge Action Trigger (Cleanly Placed & Responsive) */}
-      <div className="fixed bottom-6 left-6 z-40 hidden sm:block">
-        <button
-          onClick={() => setIsAdminOpen(true)}
-          className="bg-[#1C1C1B] hover:bg-[#B2946E] text-[#B2946E] hover:text-white px-4.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 flex items-center gap-2 border border-[#B2946E]/30 text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
-        >
-          <Settings className="w-3.5 h-3.5 animate-spin-slow" />
-          <span>Concierge Editor</span>
-        </button>
-      </div>
+      {isAdminSession && (
+        <div className="fixed bottom-6 left-6 z-40 hidden sm:block">
+          <button
+            onClick={() => setIsAdminOpen(true)}
+            className="bg-[#1C1C1B] hover:bg-[#B2946E] text-[#B2946E] hover:text-white px-4.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 flex items-center gap-2 border border-[#B2946E]/30 text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <Settings className="w-3.5 h-3.5 animate-spin-slow" />
+            <span>Concierge Editor</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

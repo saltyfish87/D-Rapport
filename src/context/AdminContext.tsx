@@ -227,6 +227,7 @@ interface AdminContextProps {
   resetSettings: () => void;
   isAdminOpen: boolean;
   setIsAdminOpen: (isOpen: boolean) => void;
+  isAdminSession: boolean;
 }
 
 const AdminContext = createContext<AdminContextProps | undefined>(undefined);
@@ -297,6 +298,24 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isAdminSession, setIsAdminSession] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const adminParam = params.get('admin');
+      const editorParam = params.get('editor');
+      if (adminParam === 'false' || editorParam === 'false') {
+        localStorage.removeItem('drapport_is_admin_session');
+        setIsAdminSession(false);
+      } else if (adminParam === 'true' || editorParam === 'true' || params.get('concierge') === 'true') {
+        localStorage.setItem('drapport_is_admin_session', 'true');
+        setIsAdminSession(true);
+      } else {
+        setIsAdminSession(localStorage.getItem('drapport_is_admin_session') === 'true');
+      }
+    }
+  }, []);
 
   // Sync settings to localStorage and update document HTML SEO tags dynamically
   useEffect(() => {
@@ -344,7 +363,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AdminContext.Provider value={{ settings, updateSettings, resetSettings, isAdminOpen, setIsAdminOpen }}>
+    <AdminContext.Provider value={{ settings, updateSettings, resetSettings, isAdminOpen, setIsAdminOpen, isAdminSession }}>
       {children}
     </AdminContext.Provider>
   );
