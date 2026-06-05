@@ -1,0 +1,8 @@
+{
+  "name": "D'Rapport Residences",
+  "description": "The official luxury landing page for D'Rapport Residences in Ampang Hilir, Kuala Lumpur. Discover low-density elite living, 200,000 sq ft of world-class club facilities, and panoramic skyline suites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
