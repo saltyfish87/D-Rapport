@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { InquiryLead } from '../types';
 import { SUITE_LAYOUTS } from '../data';
+import { useAdmin } from '../context/AdminContext';
 import {
   ShieldCheck,
   Calendar,
@@ -34,6 +35,7 @@ const COUNTRY_CODES = [
 ];
 
 export default function Registration() {
+  const { settings } = useAdmin();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [countryCode, setCountryCode] = useState('+60');
@@ -46,6 +48,7 @@ export default function Registration() {
   const [newlySubmittedLead, setNewlySubmittedLead] = useState<InquiryLead | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Load existing leads from localStorage
   useEffect(() => {
@@ -59,7 +62,7 @@ export default function Registration() {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMsg('');
@@ -78,8 +81,13 @@ export default function Registration() {
       return;
     }
 
-    // Success intake creation
+    setIsSubmitting(true);
+
     const referenceId = 'DRP-' + Math.floor(100000 + Math.random() * 900000);
+    const selectedLayout = SUITE_LAYOUTS.find((l) => l.id === preferredLayoutId);
+    const layoutDetails = selectedLayout ? `${selectedLayout.typeName} (${selectedLayout.sizeSqFt.toLocaleString()} sq ft)` : preferredLayoutId;
+    const purposeText = sizeCategory === 'own-stay' ? 'Personal Use / Own Stay' : sizeCategory === 'investment' ? 'Investment Yield' : 'Corporate Expat';
+
     const newLead: InquiryLead = {
       id: referenceId,
       fullName: fullName.trim(),
@@ -91,44 +99,64 @@ export default function Registration() {
       createdAt: new Date().toISOString()
     };
 
-    const updatedLeads = [newLead, ...leads];
-    setLeads(updatedLeads);
-    localStorage.setItem('drapport_leads', JSON.stringify(updatedLeads));
+    // Determine target serverless form endpoint
+    let endpointUrl = '';
+    const formspreeId = settings.contact.formspreeId ? settings.contact.formspreeId.trim() : 'saltyfish1987@gmail.com';
 
-    setNewlySubmittedLead(newLead);
-    setFormSubmitted(true);
-    
-    // Auto-dispatch Mailto prefill to the requested emails
-    const selectedLayout = SUITE_LAYOUTS.find((l) => l.id === preferredLayoutId);
-    const layoutDetails = selectedLayout ? `${selectedLayout.typeName} (${selectedLayout.sizeSqFt.toLocaleString()} sq ft)` : preferredLayoutId;
-    const emailBody = `Dear D'Rapport Residences Team,
+    if (formspreeId.includes('@')) {
+      // Direct Email configuration uses FormSubmit.co secure AJAX api
+      endpointUrl = `https://formsubmit.co/ajax/${formspreeId}`;
+    } else {
+      // Standard Formspree ID endpoint configuration
+      endpointUrl = `https://formspree.io/f/${formspreeId}`;
+    }
 
-I have submitted an exclusive private viewing tour inquiry. Here are my details:
+    // Prepare payload
+    const payload = {
+      _subject: `D'Rapport Residences Private Tour Inquiry - ${referenceId}`,
+      referenceId: referenceId,
+      fullName: fullName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: `${countryCode} ${phoneNumber.trim()}`,
+      preferredLayout: layoutDetails,
+      intendedUse: purposeText,
+      pdpaConsent: "Agreed",
+      timestamp: new Date().toLocaleString()
+    };
 
-Reference ID: ${referenceId}
-Guest Name  : ${fullName.trim()}
-Email       : ${email.trim()}
-Contact     : ${countryCode} ${phoneNumber.trim()}
-Suite choice: ${layoutDetails}
-Purpose     : ${sizeCategory === 'own-stay' ? 'Personal Use / Own Stay' : sizeCategory === 'investment' ? 'Investment Yield' : 'Corporate Expat'}
-PDPA Policy : Agreed
+    try {
+      const response = await fetch(endpointUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
-Please get in touch to confirm my private viewings.
+      if (response.ok) {
+        // Lead successful delivery! Commit to state and persistent storage logs
+        const updatedLeads = [newLead, ...leads];
+        setLeads(updatedLeads);
+        localStorage.setItem('drapport_leads', JSON.stringify(updatedLeads));
 
-Kind Regards,
-${fullName.trim()}`;
+        setNewlySubmittedLead(newLead);
+        setFormSubmitted(true);
 
-    const mailtoUrl = `mailto:clairee0726@gmail.com,shyanyeews@gmail.com?subject=${encodeURIComponent(`D'Rapport Residences Private Tour Inquiry - ${referenceId}`)}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Safety delay to allow React state updates to render before opening mail client
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
-    }, 150);
-
-    // Clear fields
-    setFullName('');
-    setEmail('');
-    setPhoneNumber('');
+        // Clear fields
+        setFullName('');
+        setEmail('');
+        setPhoneNumber('');
+      } else {
+        const responseData = await response.json().catch(() => ({}));
+        throw new Error(responseData?.message || 'Server returned a submission error status.');
+      }
+    } catch (error: any) {
+      console.error('Serverless form submission error:', error);
+      setErrorMessage(`Inquiry transmission failed: ${error?.message || 'Check network connection'}. Please try again, or connect directly with our sales concierge!`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -375,9 +403,20 @@ ${fullName.trim()}`;
                     <button
                       type="submit"
                       id="form-submit-inquiry"
-                      className="w-full py-4 bg-[#1C1C1B] hover:bg-[#B2946E] transition-colors text-white font-sans font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all cursor-pointer rounded-none"
+                      disabled={isSubmitting}
+                      className="w-full py-4 bg-[#1C1C1B] hover:bg-[#B2946E] disabled:bg-[#82827E] disabled:cursor-not-allowed text-white font-sans font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all cursor-pointer rounded-none flex items-center justify-center gap-2"
                     >
-                      Secure Private Tour Credentials
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Validating Credentials...</span>
+                        </>
+                      ) : (
+                        <span>Secure Private Tour Credentials</span>
+                      )}
                     </button>
                   </motion.form>
                 ) : (
@@ -413,9 +452,9 @@ ${fullName.trim()}`;
                       {/* Ticket Fields */}
                       <div className="p-5 space-y-3 font-mono text-[11px] text-[#575754]">
                         <div className="flex justify-between border-b border-[#EBEBE6] pb-2">
-                          <span className="text-[#82827E] uppercase">Dispatch To:</span>
-                          <span className="text-[#1C1C1B] font-bold text-[9px] truncate" title="clairee0726@gmail.com, shyanyeews@gmail.com">
-                            clairee0726@gmail.com, shyanyeews@gmail.com
+                          <span className="text-[#82827E] uppercase">Dispatch:</span>
+                          <span className="text-[#1C1C1B] font-bold text-[10px] truncate max-w-[190px]" title={settings.contact.formspreeId || 'saltyfish1987@gmail.com'}>
+                            {settings.contact.formspreeId || 'saltyfish1987@gmail.com'}
                           </span>
                         </div>
                         <div className="flex justify-between border-b border-[#EBEBE6] pb-2">

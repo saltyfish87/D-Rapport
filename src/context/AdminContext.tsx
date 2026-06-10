@@ -56,6 +56,7 @@ export interface AdminSettings {
     address: string;
     developer: string;
     subsidiary: string;
+    formspreeId: string;
   };
   overview: {
     tagline: string;
@@ -118,7 +119,8 @@ const DEFAULT_SETTINGS: AdminSettings = {
     email: "inquiry@drapportresidences.com",
     address: "Jalan Nipah, Off Jalan Ampang, 55000 Kuala Lumpur, Malaysia.",
     developer: "ACMAR Development",
-    subsidiary: "Perkasa Sukma Sdn Bhd"
+    subsidiary: "Perkasa Sukma Sdn Bhd",
+    formspreeId: "saltyfish1987@gmail.com"
   },
   overview: {
     tagline: "Elite Architectural Vision",
@@ -298,21 +300,30 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isAdminSession, setIsAdminSession] = useState(false);
+  const [isAdminSession, setIsAdminSession] = useState(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      const isProdDomain = hostname === 'd-rapport.com' || hostname === 'www.d-rapport.com';
+      
       const params = new URLSearchParams(window.location.search);
       const adminParam = params.get('admin');
       const editorParam = params.get('editor');
-      if (adminParam === 'false' || editorParam === 'false') {
-        localStorage.removeItem('drapport_is_admin_session');
-        setIsAdminSession(false);
-      } else if (adminParam === 'true' || editorParam === 'true' || params.get('concierge') === 'true') {
-        localStorage.setItem('drapport_is_admin_session', 'true');
-        setIsAdminSession(true);
+      
+      if (isProdDomain) {
+        if (adminParam === 'false' || editorParam === 'false') {
+          localStorage.removeItem('drapport_is_admin_session');
+          setIsAdminSession(false);
+        } else if (adminParam === 'true' || editorParam === 'true' || params.get('concierge') === 'true') {
+          localStorage.setItem('drapport_is_admin_session', 'true');
+          setIsAdminSession(true);
+        } else {
+          setIsAdminSession(localStorage.getItem('drapport_is_admin_session') === 'true');
+        }
       } else {
-        setIsAdminSession(localStorage.getItem('drapport_is_admin_session') === 'true');
+        // Always show the admin concierge editor in preview environments
+        setIsAdminSession(true);
       }
     }
   }, []);

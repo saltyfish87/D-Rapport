@@ -453,6 +453,23 @@ export default function AdminPanel() {
                     </div>
                   </div>
 
+                  <div className="space-y-1.5 pt-2">
+                    <label className="block text-[10px] font-mono text-[#82827E] uppercase font-bold flex items-center justify-between">
+                      <span>Serverless Form ID / Email Hook</span>
+                      <span className="text-[8px] bg-emerald-50 text-emerald-600 border border-emerald-200 uppercase px-1.5 py-0.5 font-bold font-mono">Formspree & FormSubmit</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. saltyfish1987@gmail.com or Formspree Form ID"
+                      value={formData.contact.formspreeId || ''}
+                      onChange={(e) => handleInputChange('contact', 'formspreeId', e.target.value)}
+                      className="w-full bg-[#FCFCFA] border border-[#EBEBE6] focus:border-[#B2946E] p-2.5 text-xs text-[#1C1C1B] focus:outline-none font-mono"
+                    />
+                    <p className="text-[10px] text-[#82827E] leading-relaxed">
+                      Enter your Formspree Form ID (e.g. <code className="bg-neutral-100 px-1 text-[#1c1c1b] font-semibold">mvgozypb</code>) or enter your email address directly to route via FormSubmit.co auto-forwarding with zero-setup!
+                    </p>
+                  </div>
+
                   <h4 className="text-xs uppercase font-mono tracking-widest text-[#B2946E] font-extrabold pt-4 pb-1 border-b border-[#EBEBE6]">
                     Interactive Highlight Metrics
                   </h4>
