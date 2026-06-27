@@ -62,7 +62,7 @@ export default function App() {
   }, [settings.seo]);
 
   return (
-    <div className="min-h-screen bg-[#FCFCFA] text-[#1C1C1B] selection:bg-[#B2946E]/20 selection:text-[#1C1C1B] overflow-x-hidden antialiased">
+    <div className="min-h-screen bg-white text-stone-900 selection:bg-[#00CFC8]/20 selection:text-stone-900 overflow-x-hidden antialiased">
       {/* Premium Luxury Sticky Header */}
       <Navbar />
 
@@ -93,16 +93,16 @@ export default function App() {
       <Footer />
 
       {/* Slide-over Control Panel Overlay */}
-      <AdminPanel />
+      {isAdminSession && <AdminPanel />}
 
       {/* Floating Concierge Action Trigger (Cleanly Placed & Responsive) */}
       {isAdminSession && (
         <div className="fixed bottom-6 left-6 z-40 hidden sm:block">
           <button
             onClick={() => setIsAdminOpen(true)}
-            className="bg-[#1C1C1B] hover:bg-[#B2946E] text-[#B2946E] hover:text-white px-4.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 flex items-center gap-2 border border-[#B2946E]/30 text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+            className="bg-[#101820]/90 backdrop-blur-md hover:bg-[#0A0A0A] text-[#2AE8D8] hover:text-white px-5 py-3 shadow-[0_8px_30px_rgba(0,207,200,0.15)] hover:shadow-[0_8px_30px_rgba(0,207,200,0.3)] transition-all duration-300 flex items-center gap-2 border border-[#00CFC8]/30 hover:border-[#65FFF5] text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
           >
-            <Settings className="w-3.5 h-3.5 animate-spin-slow" />
+            <Settings className="w-3.5 h-3.5 animate-spin-slow text-[#2AE8D8]" />
             <span>Concierge Editor</span>
           </button>
         </div>

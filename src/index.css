@@ -6,43 +6,93 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Custom elite warm-light visual backdrop and grid styling */
-.bg-radial-vignette {
-  background: radial-gradient(circle at center, transparent 30%, rgba(250, 249, 245, 0.9) 80%);
+/* Custom elite dark-luxury visual backdrop, glow lighting, and ambient styling */
+.bg-dark-charcoal {
+  background-color: #0A0A0A;
+}
+
+.bg-secondary-dark {
+  background-color: #101820;
+}
+
+.text-secondary-gray {
+  color: #B5B5B5;
+}
+
+.text-accent-teal {
+  color: #2AE8D8;
+}
+
+.bg-accent-gradient {
+  background: linear-gradient(135deg, #00CFC8 0%, #2AE8D8 50%, #65FFF5 100%);
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #00CFC8 0%, #2AE8D8 60%, #65FFF5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-luxury {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.bg-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.bg-glass-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 207, 200, 0.3);
 }
 
 .bg-dotted-pattern {
-  background-image: radial-gradient(rgba(178, 148, 110, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(rgba(0, 207, 200, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.bg-blue-grid {
-  background-size: 24px 24px;
-  background-image: linear-gradient(to right, rgba(178, 144, 110, 0.02) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(178, 144, 110, 0.02) 1px, transparent 1px);
+.bg-luxury-grid {
+  background-size: 30px 30px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
-/* Elegant sleek scrollbar to match luxury mode */
+.teal-glow {
+  box-shadow: 0 0 50px -10px rgba(0, 207, 200, 0.15);
+}
+
+.teal-glow-hover:hover {
+  box-shadow: 0 0 40px -5px rgba(0, 207, 200, 0.25);
+}
+
+/* Elegant sleek scrollbar to match luxury dark mode */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(178, 148, 110, 0.02);
+  background: rgba(16, 24, 32, 0.5);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(178, 144, 110, 0.15);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(178, 144, 110, 0.3);
+  background: rgba(0, 207, 200, 0.3);
 }
 
-/* Button & interactive states */
-button {
-  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+/* Smooth custom cursor elements or magnetic button styles */
+button, a {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0A0A0A;
 }
 

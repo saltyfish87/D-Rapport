@@ -87,7 +87,7 @@ export interface AdminSettings {
 
 const DEFAULT_SETTINGS: AdminSettings = {
   hero: {
-    title: "An Oasis of Grandeur in Ampang Hilir",
+    title: "D'Rapport Residences",
     subtitle: "Ready for Occupancy · Elite Enclave",
     description: "A prestigious low-density residential masterpiece sitting on 9.12 prime acres of key Embassy Row territory. Just 3.5km from KLCC, combining estate-sized suites and an unparalleled 200,000 sq ft of private amenities.",
     imageUrl: "https://lh3.googleusercontent.com/d/1li36_e-kW3TxgxxzzhRkPa9rA96iJ8yQ", // Google Drive direct Facade image
@@ -277,10 +277,15 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
           }
         });
 
+        const heroData = { ...DEFAULT_SETTINGS.hero, ...parsed.hero };
+        if (heroData.title === "An Oasis of Grandeur in Ampang Hilir") {
+          heroData.title = "D'Rapport Residences";
+        }
+
         return {
           ...DEFAULT_SETTINGS,
           ...parsed,
-          hero: { ...DEFAULT_SETTINGS.hero, ...parsed.hero },
+          hero: heroData,
           metrics: { ...DEFAULT_SETTINGS.metrics, ...parsed.metrics },
           seo: { ...DEFAULT_SETTINGS.seo, ...parsed.seo },
           contact: { ...DEFAULT_SETTINGS.contact, ...parsed.contact },
@@ -305,25 +310,33 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const hostname = window.location.hostname;
-      const isProdDomain = hostname === 'd-rapport.com' || hostname === 'www.d-rapport.com';
+      
+      // Development/Preview is defined as localhost, 127.0.0.1, or containing 'ais-dev-'
+      const isDevPreview = hostname === 'localhost' || 
+                           hostname === '127.0.0.1' || 
+                           hostname.startsWith('localhost:') || 
+                           hostname.includes('ais-dev-');
       
       const params = new URLSearchParams(window.location.search);
       const adminParam = params.get('admin');
       const editorParam = params.get('editor');
+      const conciergeParam = params.get('concierge');
       
-      if (isProdDomain) {
-        if (adminParam === 'false' || editorParam === 'false') {
+      if (isDevPreview) {
+        // Always enable the admin concierge editor in development previews
+        setIsAdminSession(true);
+      } else {
+        // Public/Shared/Production view: hide by default unless explicitly toggled by URL query params or persisted localStorage
+        if (adminParam === 'false' || editorParam === 'false' || conciergeParam === 'false') {
           localStorage.removeItem('drapport_is_admin_session');
           setIsAdminSession(false);
-        } else if (adminParam === 'true' || editorParam === 'true' || params.get('concierge') === 'true') {
+        } else if (adminParam === 'true' || editorParam === 'true' || conciergeParam === 'true') {
           localStorage.setItem('drapport_is_admin_session', 'true');
           setIsAdminSession(true);
         } else {
+          // Fallback to localStorage, otherwise false (hidden from public view)
           setIsAdminSession(localStorage.getItem('drapport_is_admin_session') === 'true');
         }
-      } else {
-        // Always show the admin concierge editor in preview environments
-        setIsAdminSession(true);
       }
     }
   }, []);

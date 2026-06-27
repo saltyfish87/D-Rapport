@@ -13,85 +13,87 @@ export default function Overview() {
   const overviewImg = transformGoogleDriveUrl(rawOverviewImg);
 
   return (
-    <section id="overview" className="py-24 bg-[#FCFCFA] border-b border-[#EBEBE6] relative overflow-hidden">
+    <section id="overview" className="py-24 bg-[#F4F7F6] border-b border-[#EBEBE6] relative overflow-hidden">
       {/* Decorative accent background gradients */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#B2946E]/3 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#B2946E]/2 rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[450px] h-[450px] bg-[#00CFC8]/3 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-[#2AE8D8]/2 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 bg-dotted-pattern opacity-[0.02] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         {/* Section Header */}
-        <div className="text-center md:text-left mb-16 md:mb-20 max-w-3xl">
-          <span className="text-[#B2946E] font-mono text-xs uppercase tracking-[0.2em] block mb-3 font-bold">
-            {settings.overview.tagline}
+        <div className="text-left mb-16 max-w-4xl">
+          <span className="text-[#008B85] font-mono text-xs uppercase tracking-[0.3em] block mb-3 font-bold">
+            {settings.overview.tagline || "Elite Architectural Vision"}
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-extrabold tracking-tight text-[#1C1C1B] mb-6 leading-tight">
-            {settings.overview.title}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-black tracking-tighter text-stone-900 mb-6 leading-tight">
+            {settings.overview.title ? (
+              <span>{settings.overview.title}</span>
+            ) : (
+              <span>Luxury Living. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#008B85] to-[#2AE8D8]">Elevated Investment.</span></span>
+            )}
           </h2>
-          <div className="w-16 h-0.5 bg-[#B2946E]/60 mb-6 hidden md:block" />
-          <p className="text-sm sm:text-base text-[#2D2D2A] font-sans font-normal leading-relaxed">
-            {settings.overview.description}
+          <div className="w-16 h-[3px] bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] mb-6" />
+          <p className="text-base text-stone-800 font-sans font-normal leading-relaxed max-w-3xl">
+            {settings.overview.description || "Own Kuala Lumpur's most prestigious luxury address. D'Rapport Residences fuses grand architecture with elite security and a lush park oasis right in the heart of Embassy Row."}
           </p>
         </div>
 
         {/* Feature Split Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Descriptive Specs */}
-          <div className="lg:col-span-5 space-y-10 order-2 lg:order-1">
-            <div className="flex gap-5">
-              <div className="flex-shrink-0 mt-1">
-                <div className="p-3 bg-white border border-[#EBEBE6] rounded-sm text-[#B2946E] shadow-[0_4px_12px_rgba(28,28,27,0.01)]">
-                  <Trees className="w-5 h-5" />
+          <div className="lg:col-span-5 space-y-4 order-2 lg:order-1">
+            <div className="flex gap-4 bg-white border border-[#EBEBE6] hover:border-[#00CFC8]/30 p-5 transition-all duration-300 group rounded-none shadow-sm">
+              <div className="flex-shrink-0">
+                <div className="p-2.5 bg-[#F4F7F6] border border-stone-200 group-hover:border-[#00CFC8]/30 rounded-none text-[#008B85] transition-colors shadow-sm">
+                  <Trees className="w-4.5 h-4.5" />
                 </div>
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-sans font-bold text-[#1C1C1B] mb-2">9.12 Acres of Lush Green Landscaping</h3>
-                <p className="text-[#3B3B38] text-xs sm:text-sm font-sans font-normal leading-relaxed">
-                  Almost 60% of the entire estate is dedicated to beautifully manicured greenery, scenic forest walks,
-                  sensory gardens, and soothing water installations, providing pristine air quality in the city center.
+                <h3 className="text-sm sm:text-base font-sans font-bold text-stone-900 mb-1 group-hover:text-[#008B85] transition-colors">9.12 Acres of Landscape Oasis</h3>
+                <p className="text-stone-700 text-xs font-sans font-normal leading-relaxed">
+                  Over 60% of the estate is dedicated to beautifully manicured greenery, scenic canopy walks, and calming water features.
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-5">
-              <div className="flex-shrink-0 mt-1">
-                <div className="p-3 bg-white border border-[#EBEBE6] rounded-sm text-[#B2946E] shadow-[0_4px_12px_rgba(28,28,27,0.01)]">
-                  <Shield className="w-5 h-5" />
+            <div className="flex gap-4 bg-white border border-[#EBEBE6] hover:border-[#00CFC8]/30 p-5 transition-all duration-300 group rounded-none shadow-sm">
+              <div className="flex-shrink-0">
+                <div className="p-2.5 bg-[#F4F7F6] border border-stone-200 group-hover:border-[#00CFC8]/30 rounded-none text-[#008B85] transition-colors shadow-sm">
+                  <Shield className="w-4.5 h-4.5" />
                 </div>
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-sans font-bold text-[#1C1C1B] mb-2">Elite Multi-Tier Guarded Security</h3>
-                <p className="text-[#3B3B38] text-xs sm:text-sm font-sans font-normal leading-relaxed">
-                  Situated in Kuala Lumpur's premier diplomatic district alongside national embassies. Features include strict fenced perimeter access, 24/7 private security patrols, card-activated privacy lifts, and comprehensive CCTV surveillance.
+                <h3 className="text-sm sm:text-base font-sans font-bold text-stone-900 mb-1 group-hover:text-[#008B85] transition-colors">Elite Diplomatic Security</h3>
+                <p className="text-stone-700 text-xs font-sans font-normal leading-relaxed">
+                  Located in the premier diplomatic district with multi-tier smart card access, 24/7 patrols, and high-coverage CCTV.
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-5">
-              <div className="flex-shrink-0 mt-1">
-                <div className="p-3 bg-white border border-[#EBEBE6] rounded-sm text-[#B2946E] shadow-[0_4px_12px_rgba(28,28,27,0.01)]">
-                  <Eye className="w-5 h-5" />
+            <div className="flex gap-4 bg-white border border-[#EBEBE6] hover:border-[#00CFC8]/30 p-5 transition-all duration-300 group rounded-none shadow-sm">
+              <div className="flex-shrink-0">
+                <div className="p-2.5 bg-[#F4F7F6] border border-stone-200 group-hover:border-[#00CFC8]/30 rounded-none text-[#008B85] transition-colors shadow-sm">
+                  <Eye className="w-4.5 h-4.5" />
                 </div>
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-sans font-bold text-[#1C1C1B] mb-2">360° Unrivalled Panoramic Suites</h3>
-                <p className="text-[#3B3B38] text-xs sm:text-sm font-sans font-normal leading-relaxed">
-                  Whether overlooking the rolling emerald fairways of the Royal Selangor Golf Club, the serene pool
-                  gardens, or the spectacular skyline of central Kuala Lumpur, every residence is crafted for remarkable views.
+                <h3 className="text-sm sm:text-base font-sans font-bold text-stone-900 mb-1 group-hover:text-[#008B85] transition-colors">360° Panoramic Sky Frontage</h3>
+                <p className="text-stone-700 text-xs font-sans font-normal leading-relaxed">
+                  Breathtaking, unobstructed views of the Royal Selangor Golf Club, the central gardens, or the stunning KL skyline.
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-5">
-              <div className="flex-shrink-0 mt-1">
-                <div className="p-3 bg-white border border-[#EBEBE6] rounded-sm text-[#B2946E] shadow-[0_4px_12px_rgba(28,28,27,0.01)]">
-                  <Sparkles className="w-5 h-5" />
+            <div className="flex gap-4 bg-white border border-[#EBEBE6] hover:border-[#00CFC8]/30 p-5 transition-all duration-300 group rounded-none shadow-sm">
+              <div className="flex-shrink-0">
+                <div className="p-2.5 bg-[#F4F7F6] border border-stone-200 group-hover:border-[#00CFC8]/30 rounded-none text-[#008B85] transition-colors shadow-sm">
+                  <Sparkles className="w-4.5 h-4.5" />
                 </div>
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-sans font-bold text-[#1C1C1B] mb-2">Elite Developer Partnership</h3>
-                <p className="text-[#3B3B38] text-xs sm:text-sm font-sans font-normal leading-relaxed">
-                  Brought to life by the renowned Acmar Group. Built using premium quality materials, generous
-                  high-ceiling architecture, premium granite and marble flooring, and solid acoustic soundproofing.
+                <h3 className="text-sm sm:text-base font-sans font-bold text-stone-900 mb-1 group-hover:text-[#008B85] transition-colors">Architectural Masterpiece</h3>
+                <p className="text-stone-700 text-xs font-sans font-normal leading-relaxed">
+                  Crafted with grand 3.2m high ceilings, premium marble tile designs, high-end acoustic proofing, and luxury finishes.
                 </p>
               </div>
             </div>
@@ -100,25 +102,27 @@ export default function Overview() {
           {/* Right Column: Architectural Image Frame */}
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="relative group">
-              <div className="absolute inset-0 bg-[#B2946E]/3 translate-x-2.5 translate-y-2.5 pointer-events-none transition duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#00CFC8]/10 to-[#2AE8D8]/10 rounded-none blur-xl opacity-40 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
               
-              <div className="relative overflow-hidden border border-[#EBEBE6] shadow-[0_12px_45px_rgba(28,28,27,0.03)] bg-white p-2 rounded-none">
-                <div className="relative overflow-hidden h-[350px] sm:h-[450px]">
+              <div className="relative overflow-hidden border border-[#EBEBE6] transition-colors duration-500 bg-white p-2.5 rounded-none shadow-md">
+                <div className="relative overflow-hidden h-[340px] sm:h-[420px]">
                   <img
                     src={overviewImg}
                     alt="D'Rapport Residences Kuala Lumpur interior penthouse living room view"
-                    className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover scale-[1.01] hover:scale-[1.04] transition-transform duration-1000 ease-out filter brightness-95"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 bg-gradient-to-t from-[#1C1C1B]/95 via-[#1C1C1B]/60 to-transparent">
-                    <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#C5A880] font-bold block mb-1">
-                      Actual Panoramic Vista
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-90" />
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-[#2AE8D8] font-bold block mb-1">
+                      Panoramic Sky Vistas
                     </span>
-                    <h4 className="text-white text-base sm:text-lg font-sans font-bold">
-                      Estate Living with Sky High KL Twin Towers Views
+                    <h4 className="text-white text-base sm:text-xl font-sans font-black tracking-tight">
+                      Where Architecture Meets Opportunity.
                     </h4>
-                    <p className="text-xs text-[#EBEBE6] font-sans font-light mt-1 max-w-lg">
-                      Expansive open-plan living layout featuring 3.2-meter high ceilings and full-perimeter sun protection tinted glass.
+                    <p className="text-xs text-stone-300 font-sans font-light mt-1.5 max-w-xl leading-relaxed">
+                      Sleek high-clearance glass designs, premium concrete framework, and custom designer finishes throughout.
                     </p>
                   </div>
                 </div>

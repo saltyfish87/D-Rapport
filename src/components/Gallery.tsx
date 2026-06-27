@@ -27,37 +27,43 @@ export default function Gallery() {
   const activeImage = galleryImages.find(img => img.id === activeImageId);
 
   return (
-    <section id="gallery" className="py-24 sm:py-28 bg-[#FCFCFA] border-t border-[#EBEBE6]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+    <section id="gallery" className="py-24 bg-[#F4F7F6] border-t border-[#EBEBE6] relative overflow-hidden">
+      {/* Ambient backgrounds */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#00CFC8]/3 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-          <span className="text-[#B2946E] font-mono text-xs uppercase tracking-[0.2em] block mb-3 font-bold">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-[#008B85] font-mono text-xs uppercase tracking-[0.3em] block mb-3 font-bold">
             Development Showcase
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-extrabold tracking-tight text-[#1C1C1B] mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-black tracking-tighter text-stone-900 mb-6 leading-tight">
             Visual Experience Gallery
           </h2>
-          <div className="w-16 h-0.5 bg-[#B2946E]/60 mx-auto mb-6" />
-          <p className="text-sm sm:text-base text-[#2D2D2A] font-sans font-normal leading-relaxed">
-            Take a visual tour through our state-of-the-art residences, expansive tropical gardens, and world-class club deck details. Fully customizable with your own photographs.
+          <div className="w-16 h-[3px] bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] mx-auto mb-6" />
+          <p className="text-base text-stone-800 font-sans font-normal leading-relaxed">
+            Tour our high-end residences, expansive tropical landscapes, and world-class leisure facilities. View actual photos and conceptual sketches.
           </p>
         </div>
 
         {/* Dynamic Category Filtering Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-3xl mx-auto">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4.5 py-2 text-[10px] sm:text-xs font-sans uppercase font-bold tracking-widest transition-all duration-300 rounded-none border cursor-pointer ${
-                selectedCategory === category
-                  ? 'bg-[#1C1C1B] border-[#1C1C1B] text-white shadow-md'
-                  : 'bg-white border-[#D6D6D0] text-[#1C1C1B] hover:text-[#B2946E] hover:border-[#B2946E]'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="flex flex-wrap justify-center gap-2 mb-16 max-w-3xl mx-auto">
+          {categories.map((category) => {
+            const isCur = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2.5 text-[10px] sm:text-xs font-sans uppercase font-black tracking-widest transition-all duration-300 rounded-none border cursor-pointer ${
+                  isCur
+                    ? 'bg-[#00CFC8] border-[#00CFC8] text-neutral-900 shadow-[0_2px_8px_rgba(0,207,200,0.2)]'
+                    : 'bg-transparent border-stone-200 text-stone-600 hover:text-stone-900 hover:border-[#00CFC8]/40'
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
 
         {/* Beautiful Bento-inspired Image Grid */}
@@ -76,11 +82,11 @@ export default function Gallery() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="group relative cursor-pointer overflow-hidden bg-white border border-[#EBEBE6] aspect-[4/3] flex flex-col justify-end"
+                  className="group relative cursor-pointer overflow-hidden bg-stone-100 border border-stone-200/60 aspect-[4/3] flex flex-col justify-end shadow-sm"
                   onClick={() => setActiveImageId(image.id)}
                 >
                   {/* Photo container */}
-                  <div className="absolute inset-0 z-0 bg-[#EBEBE6] overflow-hidden">
+                  <div className="absolute inset-0 z-0 bg-stone-50 overflow-hidden">
                     <img
                       src={displayUrl}
                       alt={image.title}
@@ -93,25 +99,25 @@ export default function Gallery() {
                       }}
                     />
                     {/* Dark gradient shadow overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95" />
                   </div>
 
                   {/* Absolute positioning badge */}
-                  <div className="absolute top-4 left-4 z-10 bg-[#B2946E] border border-[#B2946E]/30 text-[8px] sm:text-[9px] font-mono uppercase tracking-widest text-white px-2.5 py-1 font-bold">
+                  <div className="absolute top-4 left-4 z-10 bg-[#00CFC8] text-black text-[8px] sm:text-[9px] font-mono uppercase tracking-widest px-2.5 py-1 font-black">
                     {image.category}
                   </div>
 
                   {/* Interactive Open Badge */}
-                  <div className="absolute top-4 right-4 z-10 bg-white/95 text-[#1C1C1B] w-8 h-8 rounded-none border border-neutral-200. flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-1 group-hover:translate-y-0">
-                    <ArrowUpRight className="w-4 h-4 text-[#B2946E]" />
+                  <div className="absolute top-4 right-4 z-10 bg-white text-black w-8 h-8 rounded-none flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg">
+                    <ArrowUpRight className="w-4 h-4 text-[#00CFC8]" />
                   </div>
 
                   {/* Info Panel Text */}
                   <div className="p-5 sm:p-6 z-10 relative text-white">
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#B2946E] font-extrabold block mb-1">
+                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#2AE8D8] font-black block mb-1">
                       0{idx + 1} // Physical Showcase
                     </span>
-                    <h3 className="text-sm sm:text-base font-sans font-bold leading-tight group-hover:text-[#B2946E] transition-colors">
+                    <h3 className="text-sm sm:text-base font-sans font-bold leading-tight group-hover:text-[#2AE8D8] transition-colors">
                       {image.title}
                     </h3>
                   </div>
@@ -124,14 +130,14 @@ export default function Gallery() {
         {/* Dynamic Lightbox Modal for Immersive Full Screen viewing */}
         <AnimatePresence>
           {activeImageId && activeImage && (
-            <div className="fixed inset-0 z-50 overflow-hidden font-sans flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-[200] overflow-hidden font-sans flex items-center justify-center p-4">
               {/* Dark Ambient Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setActiveImageId(null)}
-                className="absolute inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
+                className="absolute inset-0 bg-stone-950/90 backdrop-blur-md cursor-pointer"
               />
 
               {/* Lightbox body */}
@@ -140,10 +146,10 @@ export default function Gallery() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-                className="bg-[#1C1C1B] max-w-5xl w-full relative z-10 overflow-hidden border border-white/10"
+                className="bg-white max-w-5xl w-full relative z-10 overflow-hidden border border-[#EBEBE6] shadow-2xl"
               >
                 {/* Images Container */}
-                <div className="relative aspect-[16/10] bg-[#141413] flex items-center justify-center overflow-hidden border-b border-white/5">
+                <div className="relative aspect-[16/10] bg-stone-50 flex items-center justify-center overflow-hidden border-b border-[#EBEBE6]">
                   <img
                     src={transformGoogleDriveUrl(activeImage.url)}
                     alt={activeImage.title}
@@ -155,26 +161,26 @@ export default function Gallery() {
                   />
                   
                   {/* Floating category */}
-                  <span className="absolute top-4 left-4 bg-[#B2946E] text-white font-mono text-[9px] uppercase tracking-widest px-3 py-1 font-bold">
+                  <span className="absolute top-4 left-4 bg-[#00CFC8] text-black font-mono text-[9px] uppercase tracking-widest px-3 py-1 font-black">
                     {activeImage.category}
                   </span>
 
                   {/* Absolute exit button */}
                   <button
                     onClick={() => setActiveImageId(null)}
-                    className="absolute top-4 right-4 bg-black/60 text-white/80 hover:text-white px-3 py-2 font-mono text-[10px] tracking-widest uppercase border border-white/15 cursor-pointer bg-neutral-900/40 hover:bg-neutral-900 transition-colors"
+                    className="absolute top-4 right-4 bg-stone-900 text-white hover:text-[#00CFC8] px-3 py-2 font-mono text-[10px] tracking-widest uppercase border border-stone-800 cursor-pointer hover:bg-black transition-colors"
                   >
                     Close [ESC]
                   </button>
                 </div>
 
                 {/* Info and Description Strip */}
-                <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#141413]">
+                <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-stone-50">
                   <div>
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#B2946E] font-bold block mb-1">
+                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#008B85] font-bold block mb-1">
                       Active High-Resolution Preview / Interactive View
                     </span>
-                    <h4 className="text-lg sm:text-xl font-sans font-extrabold text-white">
+                    <h4 className="text-lg sm:text-xl font-sans font-black text-stone-900 uppercase tracking-wider">
                       {activeImage.title}
                     </h4>
                   </div>
@@ -185,7 +191,7 @@ export default function Gallery() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setActiveImageId(null)}
-                      className="inline-block bg-[#B2946E] hover:bg-white text-white hover:text-[#1C1C1B] px-5 py-3 transition-colors text-[10px] font-mono uppercase tracking-widest font-bold border border-transparent"
+                      className="inline-block bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] hover:from-[#2AE8D8] hover:to-[#65FFF5] text-neutral-900 px-6 py-3.5 transition-all text-[10px] font-sans uppercase font-black tracking-widest border border-transparent shadow-lg"
                     >
                       Book Tour of Suite
                     </a>
