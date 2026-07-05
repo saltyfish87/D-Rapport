@@ -9,6 +9,7 @@ import Hero from './components/Hero';
 import Overview from './components/Overview';
 import Facilities from './components/Facilities';
 import Layouts from './components/Layouts';
+import FacilitiesPlan from './components/FacilitiesPlan';
 import Location from './components/Location';
 import Gallery from './components/Gallery';
 import Registration from './components/Registration';
@@ -23,7 +24,7 @@ export default function App() {
   // Dynamic SEO Synchronization
   useEffect(() => {
     // 1. Sync Page Document Title
-    document.title = settings.seo.title || "D'Rapport Residences | Official Ampang Hilir Enclave";
+    document.title = settings.seo.title || "Cappella Embassy | Official Ampang Hilir Enclave";
 
     // 2. Sync Google Site Verification tag
     let existingVerify = document.querySelector('meta[name="google-site-verification"]');
@@ -62,7 +63,7 @@ export default function App() {
   }, [settings.seo]);
 
   return (
-    <div className="min-h-screen bg-white text-stone-900 selection:bg-[#00CFC8]/20 selection:text-stone-900 overflow-x-hidden antialiased">
+    <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A1A] selection:bg-[#B2946E]/30 selection:text-black overflow-x-hidden antialiased">
       {/* Premium Luxury Sticky Header */}
       <Navbar />
 
@@ -73,19 +74,22 @@ export default function App() {
         {/* Vision & Low Density Core Benefits Block */}
         <Overview />
 
-        {/* 200,000 Sq Ft Resort Facilities Matrix */}
+        {/* Key Features: 200,000 Sq Ft Resort Facilities Matrix */}
         <Facilities />
+
+        {/* Location Amenities: Embassy District Accessibility Map Node Explorer */}
+        <Location />
 
         {/* Executive Suites Diagrams & Investment Calculator */}
         <Layouts />
 
-        {/* Embassy District Accessibility Map Node Explorer */}
-        <Location />
+        {/* Level 2 Facilities Masterplan/Pelan */}
+        <FacilitiesPlan />
 
         {/* Visual Experience Gallery */}
         <Gallery />
 
-        {/* VIP Lead Intake Intake Form */}
+        {/* CTA: VIP Lead Intake Form */}
         <Registration />
       </main>
 
@@ -100,9 +104,9 @@ export default function App() {
         <div className="fixed bottom-6 left-6 z-40 hidden sm:block">
           <button
             onClick={() => setIsAdminOpen(true)}
-            className="bg-[#101820]/90 backdrop-blur-md hover:bg-[#0A0A0A] text-[#2AE8D8] hover:text-white px-5 py-3 shadow-[0_8px_30px_rgba(0,207,200,0.15)] hover:shadow-[0_8px_30px_rgba(0,207,200,0.3)] transition-all duration-300 flex items-center gap-2 border border-[#00CFC8]/30 hover:border-[#65FFF5] text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+            className="bg-[#1A1A1A] hover:bg-[#B2946E] text-white px-5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_30px_rgba(178,148,110,0.2)] transition-all duration-300 flex items-center gap-2 border border-[#B2946E]/30 text-[10px] font-mono tracking-widest font-bold uppercase rounded-none cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
           >
-            <Settings className="w-3.5 h-3.5 animate-spin-slow text-[#2AE8D8]" />
+            <Settings className="w-3.5 h-3.5 animate-spin-slow text-[#B2946E]" />
             <span>Concierge Editor</span>
           </button>
         </div>

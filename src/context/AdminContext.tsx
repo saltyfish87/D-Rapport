@@ -9,16 +9,24 @@ import { SUITE_LAYOUTS } from '../data';
 export function transformGoogleDriveUrl(url: string | null | undefined): string {
   if (!url) return '';
   let cleaned = url.trim().replace(/^"|"$/g, '');
+  let base = cleaned;
   if (/^[a-zA-Z0-9_-]{33}$/.test(cleaned) && (cleaned.startsWith('1') || cleaned.startsWith('0'))) {
-    return `https://lh3.googleusercontent.com/d/${cleaned}`;
-  }
-  if (cleaned.includes('drive.google.com') || cleaned.includes('docs.google.com')) {
+    base = `https://lh3.googleusercontent.com/d/${cleaned}`;
+  } else if (cleaned.includes('drive.google.com') || cleaned.includes('docs.google.com')) {
     const fileIdMatch = cleaned.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || cleaned.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (fileIdMatch && fileIdMatch[1]) {
-      return `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`;
+      base = `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`;
     }
   }
-  return cleaned;
+  
+  // If it is a googleusercontent link, append highly optimized webp & sizing parameters (=w1600-rw)
+  if (base.includes('lh3.googleusercontent.com/d/')) {
+    // Prevent double-appending if already present
+    if (!base.includes('=')) {
+      return `${base}=w1600-rw`;
+    }
+  }
+  return base;
 }
 
 export interface AdminSettings {
@@ -76,8 +84,10 @@ export interface AdminSettings {
     id: string;
     typeName: string;
     sizeSqFt: number;
+    sizeSqM: number;
     bedrooms: number;
     bathrooms: number;
+    utilityOrMaid: boolean;
     description: string;
     startingPriceRM: number;
     keyFeature: string;
@@ -87,12 +97,12 @@ export interface AdminSettings {
 
 const DEFAULT_SETTINGS: AdminSettings = {
   hero: {
-    title: "D'Rapport Residences",
+    title: "Cappella Embassy",
     subtitle: "Ready for Occupancy · Elite Enclave",
-    description: "A prestigious low-density residential masterpiece sitting on 9.12 prime acres of key Embassy Row territory. Just 3.5km from KLCC, combining estate-sized suites and an unparalleled 200,000 sq ft of private amenities.",
-    imageUrl: "https://lh3.googleusercontent.com/d/1li36_e-kW3TxgxxzzhRkPa9rA96iJ8yQ", // Google Drive direct Facade image
-    buttonPrimaryText: "Register for private view",
-    buttonSecondaryText: "Explore development"
+    description: "A prestigious low-density residential masterpiece sitting on 9.12 prime acres of key Embassy Row territory. Estate-sized suites paired with 200,000 sq ft of private lifestyle club amenities.",
+    imageUrl: "https://lh3.googleusercontent.com/d/1Vl3T3BzDlKwmKbW3PM4VXxP27Op-cSlm", // FACADE.jpeg
+    buttonPrimaryText: "Book Private Tour",
+    buttonSecondaryText: "Explore Suites"
   },
   metrics: {
     proximity: "3.5",
@@ -104,29 +114,29 @@ const DEFAULT_SETTINGS: AdminSettings = {
     gatherSpace: "200k",
     gatherSpaceLabel: "Elite Gather Space",
     gatherSpaceDesc: "Pure lifestyle & sports deck",
-    suiteSizes: "1.1–2.2k",
+    suiteSizes: "1.1–2.26k",
     suiteSizesLabel: "Suite Sizes (sq ft)",
     suiteSizesDesc: "Generous, family-focused layouts"
   },
   seo: {
-    title: "D'Rapport Residences | Luxury Condominiums Ampang Hilir, Kuala Lumpur",
-    description: "Discover D'Rapport Residences in elite Ampang Hilir, Kuala Lumpur. Premium resort-style living across 9.12 prime acres with world-class facilities and panoramic city views.",
-    keywords: "D'Rapport Residences, Ampang Hilir Condominium, Kuala Lumpur Luxury Condo, Embassy Row Property, Acmar Group, Malaysia Real Estate, KLCC Suites",
+    title: "Cappella Embassy | Luxury Condominiums Ampang Hilir, Kuala Lumpur",
+    description: "Discover Cappella Embassy in elite Ampang Hilir, Kuala Lumpur. Premium resort-style living across 9.12 prime acres with world-class facilities and panoramic city views.",
+    keywords: "Cappella Embassy, D'Rapport Residences, Ampang Hilir Condominium, Kuala Lumpur Luxury Condo, Embassy Row Property, TSLAW Land, Acmar Group, Malaysia Real Estate, KLCC Suites",
     googleVerification: "google-site-verification-placeholder-code"
   },
   contact: {
     phone: "+60 12-657 9508",
     email: "inquiry@drapportresidences.com",
     address: "Jalan Nipah, Off Jalan Ampang, 55000 Kuala Lumpur, Malaysia.",
-    developer: "ACMAR Development",
+    developer: "TSLAW Land (formerly D'Rapport Residences by Acmar Group)",
     subsidiary: "Perkasa Sukma Sdn Bhd",
     formspreeId: "saltyfish1987@gmail.com"
   },
   overview: {
     tagline: "Elite Architectural Vision",
-    title: "Low-Density Serenity Just Minutes From KL City Centre",
-    description: "D’Rapport Residences stands out for its well-balanced lifestyle offering, combining generous, estate-sized interior spaces with an extensive range of facilities designed for everyday comfort and recreation. It is an exclusive haven nestled gracefully within the high-class Ampang Hilir neighborhood.",
-    imageUrl: "https://lh3.googleusercontent.com/d/1cXFbZHInlsEgmVRWeXxBj4muHwKuFkqz" // Google Drive direct Modern Contemporary interior
+    title: "Low-Density Serenity in the Diplomatic District",
+    description: "Cappella Embassy fuses grand architecture with elite security and a lush park oasis. An exclusive haven nestled gracefully within the high-class Ampang Hilir neighborhood, designed for everyday comfort and privacy.",
+    imageUrl: "https://lh3.googleusercontent.com/d/12UUAYn-aDch2q0O-1zs1lTjDV-coWuNU" // FAMILY ROOM.jpeg
   },
   gallery: {
     images: [
@@ -134,79 +144,109 @@ const DEFAULT_SETTINGS: AdminSettings = {
         id: "gal-1",
         title: "Grand Entrance Portal & Facade Showcase",
         category: "Exterior & Grounds",
-        url: "https://lh3.googleusercontent.com/d/1li36_e-kW3TxgxxzzhRkPa9rA96iJ8yQ"
+        url: "https://lh3.googleusercontent.com/d/1Vl3T3BzDlKwmKbW3PM4VXxP27Op-cSlm"
       },
       {
         id: "gal-2",
-        title: "Expansive Multi-Tier Lifestyle Facilities Deck",
-        category: "Amenities",
-        url: "https://lh3.googleusercontent.com/d/1mI3cP2NSlYRDhS5_u7WEuM6aQIS__Fr1"
+        title: "Comprehensive Level 2 Facilities Masterplan",
+        category: "Facilities Plan",
+        url: "https://lh3.googleusercontent.com/d/1-oP4vHq6lc0ODSgTxWhs2pGrG3xG64V7"
       },
       {
         id: "gal-3",
-        title: "Lush Manicured Gardens & Canopy Walkways",
-        category: "Lush Greenery",
-        url: "https://lh3.googleusercontent.com/d/1VqUK8zTL77Tz8rjDV3ePTT4ERiNPZwY6"
+        title: "Double-Volume Family Living Suites",
+        category: "Exquisite Interiors",
+        url: "https://lh3.googleusercontent.com/d/12UUAYn-aDch2q0O-1zs1lTjDV-coWuNU"
       },
       {
         id: "gal-4",
-        title: "Resort-Style Olympic-Length Swimming Pool",
+        title: "Professional Putting & Golf Simulator",
         category: "Amenities",
-        url: "https://lh3.googleusercontent.com/d/1WaGGwwKnM2d3vWhvuDW-n-hYXCbQl61w"
+        url: "https://lh3.googleusercontent.com/d/1kV90DxZcFXzzRwEQo68tWCNFRh1ujLkq"
       },
       {
         id: "gal-5",
-        title: "Light-Filled Private Gym & Fitness Studio",
+        title: "High-Performance Training Gymnasium",
         category: "Amenities",
-        url: "https://lh3.googleusercontent.com/d/1q-7ZN5HiK8DXOnTD7KRJPicFsSe5HmKb"
+        url: "https://lh3.googleusercontent.com/d/1zeEdVHqSiMXJCKJsGzc-q6JsB1Gz2OYX"
       },
       {
         id: "gal-6",
-        title: "Indoor Golf Putting Range & Simulators",
+        title: "Soundproof Karaoke & Music Lounge",
         category: "Amenities",
-        url: "https://lh3.googleusercontent.com/d/1y5VtmBHvvbWYEgcvxqm5efEPODQ7ieuu"
+        url: "https://lh3.googleusercontent.com/d/1K__O-XlK7UAoNZKBjW3obWXspi0U7N1H"
       },
       {
         id: "gal-7",
-        title: "Modern Contemporary Private Living Hall",
-        category: "Exquisite Interiors",
-        url: "https://lh3.googleusercontent.com/d/1cXFbZHInlsEgmVRWeXxBj4muHwKuFkqz"
+        title: "Double-Volume Multipurpose Clubhouse Hall",
+        category: "Amenities",
+        url: "https://lh3.googleusercontent.com/d/1DrsW-5RIOGEoIzmwFavj6-PaG5trmLin"
       },
       {
         id: "gal-8",
-        title: "Exquisite Master Retreat with Minimalist Lines",
-        category: "Exquisite Interiors",
-        url: "https://lh3.googleusercontent.com/d/1HJBYYr6obe2-pTb3K3x9_LPwyvhJE43a"
+        title: "Teal Water Pools & Overhanging Pavilions",
+        category: "Amenities",
+        url: "https://lh3.googleusercontent.com/d/1PuuEW6pWUUp_Tt8NchanJL-Xr_XYVNl4"
       },
       {
         id: "gal-9",
-        title: "Warm Organic Modern Muji Shared Lounge",
-        category: "Exquisite Interiors",
-        url: "https://lh3.googleusercontent.com/d/1zX7Uu5ZreyiIZ_cfTsHTyIvyZ0ZSig06"
+        title: "Rooftop Sky Bar & Social Lounge",
+        category: "Amenities",
+        url: "https://lh3.googleusercontent.com/d/1JWHzQrfnsbxIILxt5SRB7DPBdjdLRnP_"
       },
       {
         id: "gal-10",
-        title: "High-Ceiling Dual Dining and Culinary Lounge",
+        title: "Warm Organic Modern Social Lounge",
         category: "Exquisite Interiors",
-        url: "https://lh3.googleusercontent.com/d/1SkOQvZFNqED9gcHkJHZyogjUiQ8slldf"
+        url: "https://lh3.googleusercontent.com/d/1GDAsdmnfqPQ3d1tVdKEgekSx9qzGoI6a"
       },
       {
         id: "gal-11",
-        title: "Airy Scandinavian Style Suite Quiet Corner",
-        category: "Exquisite Interiors",
-        url: "https://lh3.googleusercontent.com/d/1L1dBEZ7gnp_FGQAwB18QsGAfCE7VnmcC"
+        title: "Strategic Location Map & Transport Junctions",
+        category: "Location",
+        url: "https://lh3.googleusercontent.com/d/1YY_mgXog-4mAJTybU4PrVPt4NU8DsVLu"
       },
       {
         id: "gal-12",
-        title: "Minutes to Mandarin Oriental & Petronas Twin Towers",
-        category: "Exterior & Grounds",
-        url: "https://lh3.googleusercontent.com/d/1lOrTc1cFQOa5Y8M9htEdyRN3LL5Eq-nW"
+        title: "Suite Type D2 Floorplan (1,108 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1m02UDoSszh_ugZU1f8t1ZIOpDvO1LnvY"
       },
       {
         id: "gal-13",
-        title: "Double-Volume Grand Multipurpose Clubhouse Hall",
-        category: "Amenities",
-        url: "https://lh3.googleusercontent.com/d/1nTEobHvR_ZbHWHhlnb_Mont4kDl94mZN"
+        title: "Suite Type D1 Floorplan (1,152 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1yS8G7WjwIklEQ1tg_ecttlrYWx9sYVpI"
+      },
+      {
+        id: "gal-14",
+        title: "Suite Type C Floorplan (1,626 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1LOboWWIpv4ZAKP7sTdzWfmjscoNEBDQu"
+      },
+      {
+        id: "gal-15",
+        title: "Suite Type B Floorplan (1,927 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1x1MS6K-mDXSlDq5Q3nQeMkAgIQy1u2EQ"
+      },
+      {
+        id: "gal-16",
+        title: "Suite Type A1 Floorplan (2,260 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1eT99BECIDOlxsdCDx5-OlmWTCkDP95xU"
+      },
+      {
+        id: "gal-17",
+        title: "Suite Type A2 Floorplan (2,260 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/131uhGIPx_U7F_32B8ogokAOQvrEzFVQF"
+      },
+      {
+        id: "gal-18",
+        title: "Suite Type A3 Floorplan (2,260 sq ft)",
+        category: "Suite Floorplans",
+        url: "https://lh3.googleusercontent.com/d/1qRZJ5c5nJZwtSOYfZHqNq_s2q3a1DBvX"
       }
     ]
   },
@@ -214,8 +254,10 @@ const DEFAULT_SETTINGS: AdminSettings = {
     id: ly.id,
     typeName: ly.typeName,
     sizeSqFt: ly.sizeSqFt,
+    sizeSqM: ly.sizeSqM,
     bedrooms: ly.bedrooms,
     bathrooms: ly.bathrooms,
+    utilityOrMaid: ly.utilityOrMaid,
     description: ly.description,
     startingPriceRM: ly.startingPriceRM,
     keyFeature: ly.keyFeature,
@@ -242,44 +284,55 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         // Merge stored values with default values, ensuring absolute compatibility
         const parsed = JSON.parse(stored);
         
-        // Auto-heal/backfill suiteLayouts with new default fields like imageUrl
-        const rawLayouts = parsed.suiteLayouts || DEFAULT_SETTINGS.suiteLayouts;
-        const healedLayouts = rawLayouts.map((ly: any) => {
-          const matchedDefault = DEFAULT_SETTINGS.suiteLayouts.find((d) => d.id === ly.id);
+        // Auto-heal/backfill suiteLayouts to guarantee all 7 are present and merged with saved overrides
+        const healedLayouts = DEFAULT_SETTINGS.suiteLayouts.map((defaultLy) => {
+          const storedLy = (parsed.suiteLayouts || []).find((ly: any) => ly.id === defaultLy.id);
+          if (!storedLy) return defaultLy;
+
+          // Check if the stored layout has outdated metadata (sizes, type names, bedrooms, bathrooms)
+          const isOutdated = 
+            storedLy.sizeSqFt !== defaultLy.sizeSqFt || 
+            storedLy.typeName !== defaultLy.typeName || 
+            storedLy.bedrooms !== defaultLy.bedrooms ||
+            storedLy.bathrooms !== defaultLy.bathrooms ||
+            storedLy.sizeSqM !== defaultLy.sizeSqM ||
+            storedLy.utilityOrMaid !== defaultLy.utilityOrMaid;
+
+          if (isOutdated) {
+            return defaultLy;
+          }
+
           return {
-            ...matchedDefault,
-            ...ly,
-            imageUrl: ly.imageUrl || (matchedDefault ? matchedDefault.imageUrl : '')
+            ...defaultLy,
+            ...storedLy,
+            imageUrl: defaultLy.imageUrl
           };
         });
 
-        // Auto-heal/upgrad gallery with high-res drive images for anyway holding old unsplash or legacy references
-        const savedGallery = parsed.gallery || DEFAULT_SETTINGS.gallery;
-        const healedGalleryImages = savedGallery.images.map((img: any) => {
-          const matchedDefault = DEFAULT_SETTINGS.gallery.images.find((d) => d.id === img.id);
-          if (img.url && (img.url.includes('unsplash.com') || img.url === 'default') && matchedDefault) {
-            return {
-              ...img,
-              url: matchedDefault.url
-            };
-          }
-          return {
-            ...matchedDefault,
-            ...img
-          };
-        });
-
-        // Ensure newly added default gallery images (like gal-13) are appended if missing entirely
-        DEFAULT_SETTINGS.gallery.images.forEach((defaultImg) => {
-          const exists = healedGalleryImages.some((img: any) => img.id === defaultImg.id);
-          if (!exists) {
-            healedGalleryImages.push(defaultImg);
-          }
-        });
+        // Force-sync gallery with default settings to guarantee all stale/old unsplash images are removed and synced perfectly with Google Drive
+        const healedGalleryImages = [...DEFAULT_SETTINGS.gallery.images];
 
         const heroData = { ...DEFAULT_SETTINGS.hero, ...parsed.hero };
-        if (heroData.title === "An Oasis of Grandeur in Ampang Hilir") {
-          heroData.title = "D'Rapport Residences";
+        if (heroData.title === "An Oasis of Grandeur in Ampang Hilir" || heroData.title === "D'Rapport Residences") {
+          heroData.title = "Cappella Embassy";
+        }
+
+        const seoData = { ...DEFAULT_SETTINGS.seo, ...parsed.seo };
+        if (seoData.title && seoData.title.includes("D'Rapport Residences")) {
+          seoData.title = seoData.title.replace(/D'Rapport Residences/g, "Cappella Embassy");
+        }
+        if (seoData.description && seoData.description.includes("D'Rapport Residences")) {
+          seoData.description = seoData.description.replace(/D'Rapport Residences/g, "Cappella Embassy");
+        }
+
+        const contactData = { ...DEFAULT_SETTINGS.contact, ...parsed.contact };
+        if (contactData.developer === "ACMAR Development" || (contactData.developer && contactData.developer.includes("ACMAR"))) {
+          contactData.developer = "TSLAW Land (formerly D'Rapport Residences by Acmar Group)";
+        }
+
+        const overviewData = { ...DEFAULT_SETTINGS.overview, ...parsed.overview };
+        if (overviewData.description && (overviewData.description.includes("D’Rapport Residences") || overviewData.description.includes("D'Rapport Residences"))) {
+          overviewData.description = overviewData.description.replace(/D’Rapport Residences|D'Rapport Residences/g, "Cappella Embassy");
         }
 
         return {
@@ -287,9 +340,9 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
           ...parsed,
           hero: heroData,
           metrics: { ...DEFAULT_SETTINGS.metrics, ...parsed.metrics },
-          seo: { ...DEFAULT_SETTINGS.seo, ...parsed.seo },
-          contact: { ...DEFAULT_SETTINGS.contact, ...parsed.contact },
-          overview: { ...DEFAULT_SETTINGS.overview, ...parsed.overview },
+          seo: seoData,
+          contact: contactData,
+          overview: overviewData,
           suiteLayouts: healedLayouts,
           gallery: {
             ...DEFAULT_SETTINGS.gallery,

@@ -9,7 +9,7 @@ export const COMPLETED_YEAR = 2020;
 export const TOTAL_ACRES = '9.12 Acres';
 export const TOTAL_UNITS = 1099;
 export const LOW_DENSITY_RATIO = '120 units per acre';
-export const DEV_PARTNER = 'Acmar Group';
+export const DEV_PARTNER = "TSLAW Land (formerly D'Rapport Residences by Acmar Group)";
 
 export const FACILITIES: Facility[] = [
   {
@@ -88,56 +88,95 @@ export const FACILITIES: Facility[] = [
 
 export const SUITE_LAYOUTS: SuiteLayout[] = [
   {
-    id: 'layout-a',
-    typeName: 'Type A (The Executive)',
-    sizeSqFt: 1100,
-    sizeSqM: 102,
-    bedrooms: 2,
-    bathrooms: 2,
-    utilityOrMaid: false,
-    description: 'Designed for young professionals and elite expats. A perfect balance of compact efficiency and luxury, featuring dual bedroom suites with walk-in wardrobes.',
-    startingPriceRM: 980000,
-    keyFeature: 'Ideal executive layout with premium garden views and parallel dining flow.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1-6Op8469FKUIuGp_EzFGhyh_3ktHyI2U' // Type A1 floorplan
+    id: 'layout-d1',
+    typeName: 'Type A1 (The Embassy Family)',
+    sizeSqFt: 2260,
+    sizeSqM: 210,
+    bedrooms: 3,
+    bathrooms: 4,
+    utilityOrMaid: true,
+    description: 'A massive bespoke sanctuary engineered for multi-generational living. Features a grand layout with 3+1 bedrooms, 4+1 bathrooms, double living areas, and a private entrance foyer.',
+    startingPriceRM: 2050000,
+    keyFeature: 'Breathtaking dual-aspect windows, private foyer entry, and dual premier suites.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1eT99BECIDOlxsdCDx5-OlmWTCkDP95xU'
+  },
+  {
+    id: 'layout-d2',
+    typeName: 'Type A2 (The Embassy Grand)',
+    sizeSqFt: 2260,
+    sizeSqM: 210,
+    bedrooms: 3,
+    bathrooms: 4,
+    utilityOrMaid: true,
+    description: 'A premier high-rise layout with a triple-aspect living salon, 3+1 bedroom configuration, 4+1 bathrooms, extra wide wet kitchen pantry, and dual master suites looking over the skyline.',
+    startingPriceRM: 2080000,
+    keyFeature: 'Bespoke triple-aspect corner lounge with expansive dry bar and butler pantry.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/131uhGIPx_U7F_32B8ogokAOQvrEzFVQF'
+  },
+  {
+    id: 'layout-d3',
+    typeName: 'Type A3 (The Embassy Duplex)',
+    sizeSqFt: 2260,
+    sizeSqM: 210,
+    bedrooms: 3,
+    bathrooms: 4,
+    utilityOrMaid: true,
+    description: 'An exclusive multi-generational layout with optional split-entrance configurations, 3+1 bedrooms, 4+1 bathrooms, and a master lounge lobby.',
+    startingPriceRM: 2120000,
+    keyFeature: 'Exclusive dual-key private lobby option, ideal for multi-generation co-living.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1qRZJ5c5nJZwtSOYfZHqNq_s2q3a1DBvX'
+  },
+  {
+    id: 'layout-c',
+    typeName: 'Type B (The Grand Residence)',
+    sizeSqFt: 1927,
+    sizeSqM: 179,
+    bedrooms: 3,
+    bathrooms: 4,
+    utilityOrMaid: true,
+    description: 'An ultra-spacious prestigious corner residence. Comprises three massive suite-bedrooms plus a customized family/study area and full gourmet wet & dry culinary stations.',
+    startingPriceRM: 1720000,
+    keyFeature: 'Double corner glass frontage highlighting full-height views of the city as you enter.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1x1MS6K-mDXSlDq5Q3nQeMkAgIQy1u2EQ'
   },
   {
     id: 'layout-b',
-    typeName: 'Type B (The Contemporary)',
-    sizeSqFt: 1610,
-    sizeSqM: 149,
+    typeName: 'Type C (The Contemporary)',
+    sizeSqFt: 1626,
+    sizeSqM: 151,
     bedrooms: 3,
     bathrooms: 3,
     utilityOrMaid: true,
     description: 'An elegant mid-sized family suite featuring a large master suite, two secondary bedrooms, an expansive gourmet dry kitchen, and a helper’s quarter with separate access.',
     startingPriceRM: 1450000,
     keyFeature: 'L-shaped living-dining zone paired with a generous 8-meter panoramic balcony.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1Atw5pPIXn05BIssKDhSZ8gtutcalqGlE' // Type B floorplan
+    imageUrl: 'https://lh3.googleusercontent.com/d/1LOboWWIpv4ZAKP7sTdzWfmjscoNEBDQu'
   },
   {
-    id: 'layout-c',
-    typeName: 'Type C (The Grand Residence)',
-    sizeSqFt: 1900,
-    sizeSqM: 176,
-    bedrooms: 3,
-    bathrooms: 4,
-    utilityOrMaid: true,
-    description: 'An ultra-spacious prestigious corner residence. Comprises three massive suite-bedrooms plus a customized family family/study area and full gourmet wet & dry culinary stations.',
-    startingPriceRM: 1720000,
-    keyFeature: 'Double corner glass frontage highlighting full-height views of the city as you enter.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1jm4TrMLirimtiz8hW2smV6RTHl80SRe3' // Type C floorplan
+    id: 'layout-a2',
+    typeName: 'Type D1 (The Executive Pro)',
+    sizeSqFt: 1152,
+    sizeSqM: 107,
+    bedrooms: 2,
+    bathrooms: 2,
+    utilityOrMaid: false,
+    description: 'An upgraded executive suite with wider dining views, parallel bedroom portals, and premium walk-in closet configurations.',
+    startingPriceRM: 995000,
+    keyFeature: 'Splendid parallel view with private balcony and modern island kitchen.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1yS8G7WjwIklEQ1tg_ecttlrYWx9sYVpI'
   },
   {
-    id: 'layout-d',
-    typeName: 'Type D (The Embassy Elite)',
-    sizeSqFt: 2238,
-    sizeSqM: 208,
-    bedrooms: 4,
-    bathrooms: 5,
-    utilityOrMaid: true,
-    description: 'A massive bespoke sanctuary engineered for multi-generational living. Features a dual-key option or super-suite configuration with unparalleled grandeur and double living areas.',
-    startingPriceRM: 2050000,
-    keyFeature: 'Breathtaking dual-aspect windows, private foyer entry, and dual premier suites.',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1rW2qEl6-JzCFlWz9q71ffEgQR2e7RBKa' // Type A2 (represented suite plan)
+    id: 'layout-a1',
+    typeName: 'Type D2 (The Executive)',
+    sizeSqFt: 1108,
+    sizeSqM: 103,
+    bedrooms: 2,
+    bathrooms: 2,
+    utilityOrMaid: false,
+    description: 'Designed for young professionals and elite expats. A perfect balance of compact efficiency and luxury, featuring dual bedroom suites with walk-in wardrobes.',
+    startingPriceRM: 980000,
+    keyFeature: 'Ideal executive layout with premium garden views and parallel dining flow.',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1m02UDoSszh_ugZU1f8t1ZIOpDvO1LnvY'
   }
 ];
 

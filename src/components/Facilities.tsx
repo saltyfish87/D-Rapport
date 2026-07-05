@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FACILITIES } from '../data';
@@ -10,17 +5,14 @@ import {
   Dumbbell,
   ShieldCheck,
   Eye,
-  Zap,
-  Flame,
-  Gamepad2,
-  Tv,
-  Mic,
-  Trees,
-  Smile,
+  X,
   Target,
   Droplet,
   Compass,
-  X
+  Tv,
+  Mic,
+  Trees,
+  Smile
 } from 'lucide-react';
 import poolImg from '../assets/images/drapport_pool_1780408204662.png';
 import { transformGoogleDriveUrl } from '../context/AdminContext';
@@ -45,81 +37,74 @@ export default function Facilities() {
   );
 
   return (
-    <section id="amenities" className="py-24 bg-white border-b border-[#EBEBE6] relative">
-      {/* Background patterns */}
-      <div className="absolute inset-0 bg-dotted-pattern opacity-[0.02] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[#00CFC8]/4 rounded-full blur-[120px] pointer-events-none" />
-
+    <section id="amenities" className="py-24 bg-[#F8F7F4] relative border-b border-editorial-faint">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         
-        {/* Section Title */}
-        <div className="text-left max-w-4xl mb-16">
-          <span className="text-[#008B85] font-mono text-xs uppercase tracking-[0.3em] block mb-3 font-bold">
-            World-Class Club Living
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-[#B2946E] text-[10px] font-mono tracking-[0.2em] uppercase font-bold block mb-3">
+            Elite Leisure & Recreation
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-black tracking-tighter text-stone-900 mb-6">
-            A Spectacular <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#008B85] to-[#2AE8D8]">200,000 SQ FT</span> Leisure Deck
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1A1A1A] tracking-tight mb-6 leading-[1.1]">
+            Resort Facilities & Amenities
           </h2>
-          <div className="w-16 h-[3px] bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] mb-6" />
-          <p className="text-base text-stone-800 font-sans font-normal leading-relaxed max-w-3xl">
-            Experience one of Southeast Asia's most expansive residential leisure decks. Enjoy premium amenities, high-performance training spaces, and scenic sky canopy forest walks designed for an elite resort lifestyle.
+          <p className="text-base text-[#1A1A1A]/70 font-sans leading-relaxed max-w-2xl mx-auto font-normal">
+            Experience Southeast Asia's most expansive residential leisure deck. A 200,000 sq ft private sanctuary hosting premium training hubs, aquatic lagoons, and scenic canopy walks.
           </p>
         </div>
 
         {/* Featured Image and Deck Pitch */}
-        <div className="relative overflow-hidden mb-16 rounded-none border border-[#EBEBE6] bg-[#FCFCFA] group p-2.5 shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="relative overflow-hidden mb-16 rounded-none border border-editorial-faint bg-[#FAF9F6] p-2 shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div 
               onClick={() => setIsEnlarged(true)}
-              className="lg:col-span-7 aspect-[16/10] sm:aspect-[16/9.5] w-full relative cursor-pointer overflow-hidden group/img-deck bg-[#0A0A0A]"
-              title="Click to enlarge high-resolution view"
+              className="lg:col-span-8 aspect-[16/10] w-full relative cursor-pointer overflow-hidden rounded-none bg-black"
+              title="Click to enlarge view"
             >
               <img
-                src={transformGoogleDriveUrl("https://lh3.googleusercontent.com/d/1mI3cP2NSlYRDhS5_u7WEuM6aQIS__Fr1") || poolImg}
-                alt="D'Rapport Residences Kuala Lumpur spectacular resort pool grounds"
-                className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/img-deck:scale-[1.04] filter brightness-95"
+                src={transformGoogleDriveUrl("https://lh3.googleusercontent.com/d/1PuuEW6pWUUp_Tt8NchanJL-Xr_XYVNl4") || poolImg}
+                alt="Cappella Embassy Kuala Lumpur spectacular resort pool grounds"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02] filter sepia-[0.12] contrast-[1.05]"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-black/30 hover:bg-black/50 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover/img-deck:opacity-100">
-                <div className="bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] text-neutral-900 px-5 py-3 text-[10px] sm:text-xs font-mono tracking-widest uppercase font-black shadow-lg flex items-center gap-2">
-                  <Eye className="w-4 h-4 text-neutral-900 stroke-[3px]" />
-                  <span>Enlarge Leisure Deck</span>
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="bg-white text-[#1A1A1A] px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded-none shadow-md flex items-center gap-1.5 border border-editorial-faint">
+                  <Eye className="w-3.5 h-3.5 text-[#B2946E]" />
+                  <span>View Full Screen</span>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-r from-transparent to-[#FCFCFA] lg:block hidden pointer-events-none" />
             </div>
             
-            <div className="lg:col-span-5 bg-[#FCFCFA] p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-              <span className="inline-flex items-center gap-1.5 bg-[#00CFC8]/10 border border-[#00CFC8]/30 text-[#008B85] font-mono text-[9px] uppercase tracking-[0.2em] px-3 py-1 rounded-none mb-5 w-fit font-bold">
-                <Zap className="w-3.5 h-3.5" />
+            <div className="lg:col-span-4 p-4 flex flex-col justify-center">
+              <span className="text-[#B2946E] text-[10px] font-mono font-bold tracking-widest uppercase mb-3 block">
                 Featured Amenity
               </span>
-              <h3 className="text-xl sm:text-2xl font-sans font-black tracking-tight text-stone-900 mb-3">
+              <h3 className="text-xl sm:text-2xl font-serif text-[#1A1A1A] tracking-tight mb-3">
                 The Blue Club Laguna Deck
               </h3>
-              <p className="text-stone-800 text-xs sm:text-sm font-sans font-normal leading-relaxed mb-5">
-                Resort-style swimming zones featuring floating lounge islands, children's water play areas, therapeutic jacuzzis, and an adjacent glass wellness pavilion hosting elite dining and social spaces.
+              <p className="text-[#1A1A1A]/70 text-xs sm:text-sm font-sans leading-relaxed mb-6">
+                Resort pool zones featuring floating lounge islands, therapeutic jacuzzis, and an adjacent wellness pavilion hosting elite social spaces.
               </p>
               
-              <div className="grid grid-cols-2 gap-4 border-t border-[#EBEBE6] pt-5 font-sans">
+              <div className="grid grid-cols-2 gap-4 border-t border-editorial-faint pt-5">
                 <div>
-                  <span className="block text-[9px] text-stone-500 uppercase tracking-widest font-mono font-medium mb-1">
+                  <span className="block text-[9px] font-mono uppercase tracking-wider text-[#1A1A1A]/50 font-bold mb-1">
                     Lap Pool Size
                   </span>
-                  <span className="text-base font-black text-stone-900">50m Olympic</span>
+                  <span className="text-base font-serif text-[#1A1A1A]">50m Olympic</span>
                 </div>
                 <div>
-                  <span className="block text-[9px] text-stone-500 uppercase tracking-widest font-mono font-medium mb-1">
-                    Total Oasis Capacity
+                  <span className="block text-[9px] font-mono uppercase tracking-wider text-[#1A1A1A]/50 font-bold mb-1">
+                    Pool Zones
                   </span>
-                  <span className="text-base font-black text-[#008B85]">3 Active Pools</span>
+                  <span className="text-base font-serif text-[#1A1A1A]">3 Main Basins</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Dynamic Category Filtering Tabs */}
+        {/* Category Filtering Tabs (Editorial Slate Button) */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           {[
             { id: 'all', label: 'All Facilities' },
@@ -131,10 +116,10 @@ export default function Facilities() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-5 py-3 text-[10px] sm:text-xs font-sans uppercase font-bold tracking-[0.2em] cursor-pointer border rounded-none transition-all duration-300 ${
+              className={`px-4 py-2 text-[10px] font-mono tracking-widest uppercase font-bold rounded-none transition-all duration-200 cursor-pointer border ${
                 activeTab === tab.id
-                  ? 'bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] border-transparent text-neutral-900 font-black shadow-[0_2px_8px_rgba(0,207,200,0.2)]'
-                  : 'bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:border-[#00CFC8]/40 shadow-sm'
+                  ? 'bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-sm'
+                  : 'bg-transparent text-[#1A1A1A]/60 border-editorial-faint hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5'
               }`}
             >
               {tab.label}
@@ -153,44 +138,45 @@ export default function Facilities() {
               return (
                 <motion.div
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
                   key={fac.id}
-                  className="bg-white border border-[#EBEBE6] hover:border-[#00CFC8]/30 p-6 sm:p-8 rounded-none group flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="bg-[#FAF9F6] border border-editorial-faint p-6 sm:p-8 rounded-none group flex flex-col justify-between shadow-none hover:border-[#B2946E] transition-all duration-300"
                 >
                   <div>
                     {/* Head Row */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="p-3 bg-[#FCFCFA] border border-stone-200 group-hover:border-[#00CFC8]/40 rounded-none text-[#008B85] transition-colors duration-300">
-                        <CustomIcon className="w-5 h-5" />
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="p-2.5 bg-[#F8F7F4] border border-editorial-faint rounded-none text-[#B2946E]">
+                        <CustomIcon className="w-4 h-4" />
                       </div>
                       
                       {fac.highlight && (
-                        <span className="text-[9px] font-mono text-[#008B85] bg-[#00CFC8]/10 border border-[#00CFC8]/20 px-2.5 py-0.5 rounded-none uppercase tracking-widest font-bold">
+                        <span className="text-[9px] font-mono uppercase tracking-widest text-[#B2946E] bg-[#FAF9F6] border border-[#B2946E]/30 px-2.5 py-0.5 font-bold">
                           {fac.highlight}
                         </span>
                       )}
                     </div>
 
-                    <h3 className="text-base sm:text-lg font-sans font-bold text-stone-900 mb-3 group-hover:text-[#008B85] transition-colors">
+                    <h3 className="text-xs font-mono uppercase tracking-widest font-bold text-[#1A1A1A] mb-2">
                       {fac.name}
                     </h3>
-                    <p className="text-stone-700 text-xs sm:text-sm font-sans font-normal leading-relaxed">
+                    <p className="text-[#1A1A1A]/60 text-xs sm:text-sm font-sans leading-relaxed">
                       {fac.description}
                     </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 mt-8 pt-4 border-t border-stone-100 text-[9px] font-mono uppercase tracking-widest text-stone-500 font-bold group-hover:text-[#008B85] transition-colors">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#008B85]" />
-                    <span>Exclusive Key Access Only</span>
                   </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
         </motion.div>
+
+        {/* Unified Minimal Security Notice */}
+        <div className="mt-12 flex items-center justify-center gap-2 text-[10px] font-mono uppercase tracking-wider text-[#1A1A1A]/50">
+          <ShieldCheck className="w-4 h-4 text-[#B2946E]" />
+          <span>Note: All facilities require registered smart key credentials for entry</span>
+        </div>
       </div>
 
       {/* Interactive Immersive Zoom Lightbox for Leisure Deck */}
@@ -203,61 +189,55 @@ export default function Facilities() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsEnlarged(false)}
-              className="absolute inset-0 bg-stone-950/90 backdrop-blur-md cursor-pointer"
+              className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
             />
 
             {/* Immersive high resolution contain-fitted card */}
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.98, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              exit={{ scale: 0.98, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="bg-white border border-[#EBEBE6] w-full max-w-5xl relative z-10 overflow-hidden shadow-2xl flex flex-col rounded-none"
+              className="bg-[#F8F7F4] border border-editorial-faint w-full max-w-4xl relative z-10 overflow-hidden shadow-2xl flex flex-col rounded-none"
             >
               {/* Image Frame */}
-              <div className="relative aspect-[16/10] bg-stone-50 flex items-center justify-center overflow-hidden border-b border-[#EBEBE6]">
+              <div className="relative aspect-[16/10] bg-black flex items-center justify-center overflow-hidden border-b border-editorial-faint">
                 <img
-                  src={transformGoogleDriveUrl("https://lh3.googleusercontent.com/d/1mI3cP2NSlYRDhS5_u7WEuM6aQIS__Fr1") || poolImg}
-                  alt="D'Rapport Residences Kuala Lumpur spectacular resort pool grounds"
-                  className="max-h-full max-w-full object-contain select-none"
+                  src={transformGoogleDriveUrl("https://lh3.googleusercontent.com/d/1PuuEW6pWUUp_Tt8NchanJL-Xr_XYVNl4") || poolImg}
+                  alt="Cappella Embassy Kuala Lumpur spectacular resort pool grounds"
+                  className="max-h-full max-w-full object-contain select-none filter sepia-[0.10] contrast-[1.02]"
                   referrerPolicy="no-referrer"
                 />
                 
-                {/* Floating badge */}
-                <span className="absolute top-4 left-4 bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] text-black font-mono text-[9px] uppercase tracking-widest px-3 py-1 font-bold">
-                  High-Resolution Facility Tour
-                </span>
-
                 {/* Exit button */}
                 <button
                   onClick={() => setIsEnlarged(false)}
-                  className="absolute top-4 right-4 bg-stone-900 text-white hover:text-[#00CFC8] px-3 py-2 font-mono text-[10px] tracking-widest uppercase border border-stone-800 cursor-pointer hover:bg-black transition-colors flex items-center gap-1"
+                  className="absolute top-4 right-4 bg-black/75 hover:bg-black text-white p-2 rounded-none cursor-pointer transition-colors border border-white/20"
                 >
                   <X className="w-4 h-4" />
-                  <span>Close [ESC]</span>
                 </button>
               </div>
 
               {/* Info Frame */}
-              <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-stone-50 text-stone-900">
+              <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#FAF9F6] text-[#1A1A1A]">
                 <div>
-                  <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-[#008B85] font-bold block mb-1">
+                  <span className="text-[9px] font-mono uppercase tracking-widest font-bold text-[#B2946E] block mb-1">
                     Featured Leisure Zone
                   </span>
-                  <h4 className="text-lg sm:text-2xl font-sans font-black tracking-tight">
+                  <h4 className="text-lg sm:text-xl font-serif tracking-tight">
                     Spectacular Resort Pool & Leisure Deck Grounds
                   </h4>
                 </div>
                 <div>
-                  <a
-                    href="https://wa.me/60126579508"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsEnlarged(false)}
-                    className="inline-block bg-gradient-to-r from-[#00CFC8] to-[#2AE8D8] hover:from-[#2AE8D8] hover:to-[#65FFF5] text-neutral-900 px-6 py-3.5 transition-colors text-[10px] font-sans uppercase tracking-widest font-black rounded-none shadow-lg"
+                  <button
+                    onClick={() => {
+                      setIsEnlarged(false);
+                      window.open("https://wa.me/60126579508", "_blank");
+                    }}
+                    className="inline-block bg-[#1A1A1A] hover:bg-[#B2946E] text-white px-6 py-3 text-xs font-mono uppercase tracking-wider rounded-none transition-colors cursor-pointer shadow-none"
                   >
                     Inquire via WhatsApp
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
