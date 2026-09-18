@@ -13,6 +13,7 @@ import FacilitiesPlan from './components/FacilitiesPlan';
 import Location from './components/Location';
 import Gallery from './components/Gallery';
 import Registration from './components/Registration';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import { useAdmin } from './context/AdminContext';
@@ -210,6 +211,7 @@ export default function App() {
         <Gallery />
 
         {/* CTA: VIP Lead Intake Form */}
+        <FAQ />
         <Registration />
       </main>
 
