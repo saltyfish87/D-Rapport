@@ -65,7 +65,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="font-sans text-gray-200 text-base sm:text-lg leading-relaxed max-w-2xl font-normal drop-shadow-sm"
         >
-          {settings.hero.description || "A prestigious low-density residential masterpiece sitting on 9.12 prime acres of key Embassy Row territory. Just 3.5km from KLCC."}
+          {settings.hero.description || "A prestigious low-density residential masterpiece sitting on 9.12 prime acres of key Embassy Row territory. Just 3.5km from KL City Centre."}
         </motion.p>
 
         <motion.div
@@ -100,7 +100,7 @@ export default function Hero() {
               {settings.metrics.proximity} <span className="text-xs font-sans text-gray-300">KM</span>
             </div>
             <p className="text-[9px] text-gray-400 font-mono uppercase tracking-wider">
-              {settings.metrics.proximityDesc || "to KLCC CBD"}
+              {settings.metrics.proximityDesc || "to KL City Centre CBD"}
             </p>
           </div>
 

@@ -121,7 +121,7 @@ const DEFAULT_SETTINGS: AdminSettings = {
   seo: {
     title: "Cappella Embassy | Luxury Condominiums Ampang Hilir, Kuala Lumpur",
     description: "Discover Cappella Embassy in elite Ampang Hilir, Kuala Lumpur. Premium resort-style living across 9.12 prime acres with world-class facilities and panoramic city views.",
-    keywords: "Cappella Embassy, D'Rapport Residences, Ampang Hilir Condominium, Kuala Lumpur Luxury Condo, Embassy Row Property, TSLAW Land, Acmar Group, Malaysia Real Estate, KLCC Suites",
+    keywords: "Cappella Embassy, D'Rapport Residences, Ampang Hilir Condominium, Kuala Lumpur Luxury Condo, Embassy Row Property, TSLAW Land, Acmar Group, Malaysia Real Estate, KL City Centre Suites",
     googleVerification: "google-site-verification-placeholder-code"
   },
   contact: {

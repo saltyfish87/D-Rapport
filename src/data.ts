@@ -50,7 +50,7 @@ export const FACILITIES: Facility[] = [
     name: '38th Floor Sky Gardens',
     description: 'Stunning elevated sky decks atop all five residential towers, offering 360-degree unobstructed panoramas of the iconic KL Skyline.',
     iconName: 'Compass',
-    highlight: 'Unmatched KLCC Vistas'
+    highlight: 'Unmatched KL City Centre Vistas'
   },
   {
     id: 'fac-cinema',
@@ -219,12 +219,12 @@ export const NEIGHBORHOOD_LANDMARKS: NeighborhoodLandmark[] = [
     name: 'Jelatek LRT Station',
     distanceKm: 1.0,
     travelTimeMin: 3,
-    description: 'High-speed light rail transit station, taking you straight to KLCC (3 stops) or connecting to KL Sentral and Airport Express within minutes.'
+    description: 'High-speed light rail transit station, taking you straight to KL City Centre (3 stops) or connecting to KL Sentral and Airport Express within minutes.'
   },
   {
     id: 'mark-klcc',
     category: 'shopping',
-    name: 'KLCC & Petronas Twin Towers',
+    name: 'Petronas Twin Towers',
     distanceKm: 3.5,
     travelTimeMin: 8,
     description: 'The golden heart of Kuala Lumpur. Experience high-end retail, Michelin restaurants, central park lakes, of course, the stunning twin skyscraper icons.'
@@ -250,12 +250,12 @@ export const NEIGHBORHOOD_LANDMARKS: NeighborhoodLandmark[] = [
 /** FAQ shown near the bottom of the page and mirrored in the FAQPage schema (index.html). Facts from this file and the page copy. */
 export interface FaqItem { question: string; answer: string }
 export const FAQS: FaqItem[] = [
-  { question: "Where is Cappella Embassy (formerly D'Rapport Residences) located?", answer: "Cappella Embassy is on Jalan Nipah, off Jalan Ampang, in Ampang Hilir, Kuala Lumpur (postcode 55000), the diplomatic enclave a short drive from KLCC and the Petronas Twin Towers, with international schools and the Royal Selangor Golf Club nearby." },
+  { question: "Where is Cappella Embassy (formerly D'Rapport Residences) located?", answer: "Cappella Embassy is on Jalan Nipah, off Jalan Ampang, in Ampang Hilir, Kuala Lumpur (postcode 55000), the diplomatic enclave a short drive from KL City Centre and the Petronas Twin Towers, with international schools and the Royal Selangor Golf Club nearby." },
   { question: "Is Cappella Embassy completed?", answer: `Yes. The development was completed in ${COMPLETED_YEAR}, so units are ready for occupation rather than under construction.` },
   { question: "How large is the development and how many units are there?", answer: `The estate covers ${TOTAL_ACRES} with ${TOTAL_UNITS.toLocaleString()} units across five residential towers, about ${LOW_DENSITY_RATIO}.` },
   { question: "What unit sizes and layouts are available?", answer: "Layouts range from about 1,108 sq ft two-bedroom suites to 2,260 sq ft three-plus-one-bedroom family residences with four-plus-one bathrooms, including corner and dual-key configurations." },
   { question: "What are the prices at Cappella Embassy?", answer: "Indicative prices start from about RM 980,000 for the two-bedroom suites and go up to about RM 2,120,000 for the largest family layouts. Prices depend on the unit, floor and current availability; ask for the latest list." },
-  { question: "What facilities does Cappella Embassy have?", answer: "Residents have an 11,000 sq ft gym, an indoor badminton arena, squash and basketball courts, a resort-style Olympic-length lap pool, sky gardens on the 38th floor with KLCC views, a private cinema and an elevated canopy forest walk through the 9.12-acre grounds." },
+  { question: "What facilities does Cappella Embassy have?", answer: "Residents have an 11,000 sq ft gym, an indoor badminton arena, squash and basketball courts, a resort-style Olympic-length lap pool, sky gardens on the 38th floor with KL City Centre views, a private cinema and an elevated canopy forest walk through the 9.12-acre grounds." },
   { question: "Who developed Cappella Embassy?", answer: `The project is marketed under ${DEV_PARTNER}.` },
   { question: "How do I arrange a viewing?", answer: "Use the registration form on this page or WhatsApp +60 12-657 9508 to book a private viewing and receive the current price list and floor plans." }
 ];

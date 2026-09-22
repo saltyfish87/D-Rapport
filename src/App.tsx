@@ -164,7 +164,7 @@ export default function App() {
         },
         {
           "@type": "LocationFeatureSpecification",
-          "name": "38th Floor Sky Gardens with KLCC Vistas",
+          "name": "38th Floor Sky Gardens with KL City Centre Vistas",
           "value": true
         },
         {
