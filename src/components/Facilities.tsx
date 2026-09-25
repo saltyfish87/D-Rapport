@@ -14,7 +14,7 @@ import {
   Trees,
   Smile
 } from 'lucide-react';
-import poolImg from '../assets/images/drapport_pool_1780408204662.png';
+import poolImg from '../assets/images/drapport_pool_1780408204662.jpg';
 import { transformGoogleDriveUrl } from '../context/AdminContext';
 
 const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {

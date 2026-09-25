@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useAdmin, transformGoogleDriveUrl } from '../context/AdminContext';
-import heroImg from '../assets/images/drapport_hero_1780408186865.png';
+import heroImg from '../assets/images/drapport_hero_1780408186865.jpg';
 
 export default function Hero() {
   const { settings } = useAdmin();
