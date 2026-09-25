@@ -124,6 +124,7 @@ export default function Footer() {
             <div>
               &copy; {currentYear} Cappella Embassy. All Rights Reserved. Developer: TSLAW Land (formerly D'Rapport Residences by Acmar Group).
             </div>
+            <p className="mt-2">More Kuala Lumpur new launches on <a href="https://www.propertyportal.my/" className="underline">propertyportal.my</a>.</p>
             
             <button
               onClick={handleScrollTop}
