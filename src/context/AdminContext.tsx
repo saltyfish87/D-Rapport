@@ -358,7 +358,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isAdminSession, setIsAdminSession] = useState(true);
+  const [isAdminSession, setIsAdminSession] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
