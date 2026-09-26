@@ -123,8 +123,31 @@ ${iconTags}
     ${body("zh")}
   </body>
 </html>`;
+// With cfg.zhApp the Chinese page is the React app itself (it reads /zh from the URL),
+// so both languages share one design; the static zh body is only what crawlers see first.
+let zhOut = zh;
+if (cfg.zhApp) {
+  let z = html;
+  const set = (re, tag) => { z = re.test(z) ? z.replace(re, tag) : z.replace("</head>", `    ${tag}\n  </head>`); };
+  z = z.replace(/<html lang="[^"]*">/, '<html lang="zh-CN">');
+  z = z.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(zhTitle)}</title>`);
+  set(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(zhDesc)}" />`);
+  set(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${SITE}/zh" />`);
+  set(/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${SITE}/zh" />`);
+  set(/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${esc(zhTitle)}" />`);
+  set(/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${esc(zhDesc)}" />`);
+  set(/<meta property="og:locale" content="[^"]*"\s*\/?>/, `<meta property="og:locale" content="zh_CN" />`);
+  z = z.replace(/<meta (name|property)="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${esc(zhTitle)}" />`);
+  z = z.replace(/<meta (name|property)="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${esc(zhDesc)}" />`);
+  z = z.replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>/g, "");
+  if (cfg.ogImage) { z = z.replace(/<meta property="og:image" content="[^"]*"\s*\/?>/, `<meta property="og:image" content="${esc(cfg.ogImage)}" />`); }
+  z = z.replace(/\s*<meta name="google-site-verification" content="google-site-verification-placeholder-code"\s*\/?>/, "");
+  z = z.replace("</head>", `${hreflang}    ${ld("zh")}\n  </head>`);
+  z = z.replace('<div id="root"></div>', `<div id="root">${body("zh")}</div>`);
+  zhOut = z;
+}
 fs.mkdirSync(path.join(distPath, "zh"), { recursive: true });
-fs.writeFileSync(path.join(distPath, "zh", "index.html"), zh, "utf-8");
+fs.writeFileSync(path.join(distPath, "zh", "index.html"), zhOut, "utf-8");
 
 // ---- 3. sitemap + llms.txt ---------------------------------------------------------------------
 const extra = (cfg.extraUrls || []).map((u) => `${SITE}${u}`);
