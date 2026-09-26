@@ -96,7 +96,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 4,
     utilityOrMaid: true,
     description: 'A massive bespoke sanctuary engineered for multi-generational living. Features a grand layout with 3+1 bedrooms, 4+1 bathrooms, double living areas, and a private entrance foyer.',
-    startingPriceRM: 2050000,
+    startingPriceRM: 0,
     keyFeature: 'Breathtaking dual-aspect windows, private foyer entry, and dual premier suites.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1eT99BECIDOlxsdCDx5-OlmWTCkDP95xU'
   },
@@ -109,7 +109,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 4,
     utilityOrMaid: true,
     description: 'A premier high-rise layout with a triple-aspect living salon, 3+1 bedroom configuration, 4+1 bathrooms, extra wide wet kitchen pantry, and dual master suites looking over the skyline.',
-    startingPriceRM: 2080000,
+    startingPriceRM: 0,
     keyFeature: 'Bespoke triple-aspect corner lounge with expansive dry bar and butler pantry.',
     imageUrl: 'https://lh3.googleusercontent.com/d/131uhGIPx_U7F_32B8ogokAOQvrEzFVQF'
   },
@@ -122,7 +122,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 4,
     utilityOrMaid: true,
     description: 'An exclusive multi-generational layout with optional split-entrance configurations, 3+1 bedrooms, 4+1 bathrooms, and a master lounge lobby.',
-    startingPriceRM: 2120000,
+    startingPriceRM: 0,
     keyFeature: 'Exclusive dual-key private lobby option, ideal for multi-generation co-living.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1qRZJ5c5nJZwtSOYfZHqNq_s2q3a1DBvX'
   },
@@ -135,7 +135,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 4,
     utilityOrMaid: true,
     description: 'An ultra-spacious prestigious corner residence. Comprises three massive suite-bedrooms plus a customized family/study area and full gourmet wet & dry culinary stations.',
-    startingPriceRM: 1720000,
+    startingPriceRM: 0,
     keyFeature: 'Double corner glass frontage highlighting full-height views of the city as you enter.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1x1MS6K-mDXSlDq5Q3nQeMkAgIQy1u2EQ'
   },
@@ -148,7 +148,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 3,
     utilityOrMaid: true,
     description: 'An elegant mid-sized family suite featuring a large master suite, two secondary bedrooms, an expansive gourmet dry kitchen, and a helper’s quarter with separate access.',
-    startingPriceRM: 1450000,
+    startingPriceRM: 0,
     keyFeature: 'L-shaped living-dining zone paired with a generous 8-meter panoramic balcony.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1LOboWWIpv4ZAKP7sTdzWfmjscoNEBDQu'
   },
@@ -161,7 +161,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 2,
     utilityOrMaid: false,
     description: 'An upgraded executive suite with wider dining views, parallel bedroom portals, and premium walk-in closet configurations.',
-    startingPriceRM: 995000,
+    startingPriceRM: 0,
     keyFeature: 'Splendid parallel view with private balcony and modern island kitchen.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1yS8G7WjwIklEQ1tg_ecttlrYWx9sYVpI'
   },
@@ -174,7 +174,7 @@ export const SUITE_LAYOUTS: SuiteLayout[] = [
     bathrooms: 2,
     utilityOrMaid: false,
     description: 'Designed for young professionals and elite expats. A perfect balance of compact efficiency and luxury, featuring dual bedroom suites with walk-in wardrobes.',
-    startingPriceRM: 980000,
+    startingPriceRM: 0,
     keyFeature: 'Ideal executive layout with premium garden views and parallel dining flow.',
     imageUrl: 'https://lh3.googleusercontent.com/d/1m02UDoSszh_ugZU1f8t1ZIOpDvO1LnvY'
   }
@@ -254,7 +254,7 @@ export const FAQS: FaqItem[] = [
   { question: "Is Cappella Embassy completed?", answer: `Yes. The development was completed in ${COMPLETED_YEAR}, so units are ready for occupation rather than under construction.` },
   { question: "How large is the development and how many units are there?", answer: `The estate covers ${TOTAL_ACRES} with ${TOTAL_UNITS.toLocaleString()} units across five residential towers, about ${LOW_DENSITY_RATIO}.` },
   { question: "What unit sizes and layouts are available?", answer: "Layouts range from about 1,108 sq ft two-bedroom suites to 2,260 sq ft three-plus-one-bedroom family residences with four-plus-one bathrooms, including corner and dual-key configurations." },
-  { question: "What are the prices at Cappella Embassy?", answer: "Indicative prices start from about RM 980,000 for the two-bedroom suites and go up to about RM 2,120,000 for the largest family layouts. Prices depend on the unit, floor and current availability; ask for the latest list." },
+  { question: "How do I get the current prices at Cappella Embassy?", answer: "Prices depend on the unit, floor and current availability. Ask us for the current price list." },
   { question: "What facilities does Cappella Embassy have?", answer: "Residents have an 11,000 sq ft gym, an indoor badminton arena, squash and basketball courts, a resort-style Olympic-length lap pool, sky gardens on the 38th floor with KL City Centre views, a private cinema and an elevated canopy forest walk through the 9.12-acre grounds." },
   { question: "Who developed Cappella Embassy?", answer: `The project is marketed under ${DEV_PARTNER}.` },
   { question: "How do I arrange a viewing?", answer: "Use the registration form on this page or WhatsApp +60 12-657 9508 to book a private viewing and receive the current price list and floor plans." }

@@ -162,7 +162,7 @@ export default function Layouts() {
                     </div>
                     
                     <span className="text-[10px] text-[#1A1A1A] font-mono tracking-wider whitespace-nowrap bg-[#F8F7F4] px-2.5 py-1 rounded-none border border-editorial-faint uppercase font-bold">
-                      RM {(layout.startingPriceRM / 1000000).toFixed(2)}M +
+                      Price list on request
                     </span>
                   </button>
                 ))}

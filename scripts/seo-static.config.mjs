@@ -24,7 +24,6 @@ export default {
     { label: { en: "Land size", zh: "地段面积" }, value: { en: "9.12 acres", zh: "9.12 英亩" } },
     { label: { en: "Built-up", zh: "面积" }, value: { en: "about 1,108 – 2,260 sq ft", zh: "约 1,108 – 2,260 平方英尺" } },
     { label: { en: "Bedrooms", zh: "房数" }, value: { en: "2 to 3+1", zh: "2 至 3+1 房" } },
-    { label: { en: "Indicative prices", zh: "参考价" }, value: { en: "from about RM980,000 (two-bedroom) to about RM2,120,000 (largest layouts); subject to unit and availability", zh: "两房约 RM980,000 起，最大户型约 RM2,120,000；视单位和库存而定" } },
     { label: { en: "Marketed under", zh: "销售名义" }, value: "TSLAW Land (formerly D'Rapport Residences by Acmar Group)" }
   ],
   highlights: {
@@ -37,7 +36,6 @@ export default {
       { q: "项目竣工了吗？", a: "是，2020 年已竣工，单位可即时入住，不是在建项目。" },
       { q: "项目多大、有多少单位？", a: "占地 9.12 英亩，五座住宅塔楼共 1,099 个单位。" },
       { q: "有哪些户型和面积？", a: "从约 1,108 平方英尺的两房到 2,260 平方英尺的三加一房（四加一浴），包括角落单位和双钥匙单位。" },
-      { q: "价格多少？", a: "两房参考价约 RM980,000 起，最大户型约 RM2,120,000。价格视单位、楼层和库存而定，请索取最新价格表。" },
       { q: "有什么设施？", a: "11,000 平方英尺健身房、室内羽毛球馆、壁球场和篮球场、度假式奥林匹克长度泳池、38 楼空中花园等。" },
       { q: "发展商是谁？", a: "项目以 TSLAW Land 名义销售（前称 Acmar 集团的 D'Rapport Residences）。" },
       { q: "怎么安排看房？", a: "用本页的登记表格，或 WhatsApp +60 12-657 9508 预约看房并索取价格表和户型图。" }

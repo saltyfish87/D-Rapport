@@ -140,7 +140,6 @@ export default function App() {
         "longitude": "101.7371"
       },
       "telephone": settings.contact.phone || "+60126579508",
-      "priceRange": "RM 980,000 - RM 2,120,000",
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
